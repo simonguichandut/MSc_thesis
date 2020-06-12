@@ -1,0 +1,133 @@
+\documentclass[../main.tex]{subfiles}
+
+\newcommand{\Lcr}{L_\text{cr}}
+\newcommand{\Ledd}{L_\text{Edd}}
+\newcommand{\Linf}{L^\infty}
+\newcommand{\Nicer}{\textit{NICER}}
+
+\begin{document}
+\section{Introduction}
+
+\subsection{Neutron Stars}
+ Neutron stars are some of the most interesting and exotic objects in the Universe.  With a mass slightly larger than that of the Sun and the size of a city, they are made up of matter denser than anything that can be found on Earth.  As such, they provide a unique way to probe dense matter physics, even from thousands of light years away.  Indeed, these stars have been observed in both radio and X-rays since the 1960's \citep{Hewish1968,Shklovsky1967}.  These observations have so far led to tight constraints on parameters such as surface temperature, atmospheric composition and spin frequency of these stars. However, much is still not well understood about neutron stars and a lot of work remains to be done to reach a level of higher understanding. \\
+ 
+ In particular, the equation of state (EOS) of the dense matter that makes up neutron stars is still unknown.  This fundamental relation is what links the state variables (temperature, pressure, density) to each other, and is essential to understand complex phenomena such as double neutron-star mergers, which have recently been observed for the first time with gravitational waves \citep{Abbott2017}.  This makes the neutron star EOS one of the most sought after quantities in physics today.  While many EOS's have been proposed \citep{Ozel2016a}, it is not yet possible to determine which is correct.  Fortunately, there is  a way to do this using observations.  If we can determine the radius of neutron stars with a range of different masses, we can place constraints on which EOS's are possible, since every equation predicts different radii for any given mass.  This approach has been tried and tested a lot by the astronomy \& astrophysics community in the last decade, and has already lead to promising results \citep{Ozel2016a}. But to obtain a final answer, progress in two areas has to be made: observations and theoretical models.  The work of this thesis slots into the second category.\\
+ 
+ \textbf{make second paragraph stand on its own. tone down eos. Somethign else?? I guess introduce what this project is about}
+ 
+\subsection{Type I X-ray bursts}
+Neutron stars are sometimes found in binary systems where they orbit another star with a period of hours to days \citep{Lewin1993}. In this configuration, when the companion star begins expanding as it goes through its main sequence evolution, it is be possible for its outer layers to escape its surface and funnel onto the surface of the neutron star in a process called \textit{accretion}.  As matter builds up on top of the neutron star crust, it eventually reaches a critical pressure where hydrogen ignites and quickly fuses into helium.  The star cannot compensate for this sudden release of heat by cooling, thus creating a thermonuclear runaway, which quickly spreads through the whole ocean, and burns most of the hydrogen and helium. This event results in the neutron star shining brightly in X-rays for seconds to minutes. This X-ray flash is referred to as a \textit{Type I X-ray burst} (or \textit{burst} for short). A typical burst lightcurve is shown in Fig.~\ref{fig:keek2018_fig3}.\\
+
+\textbf{Bursts are a really unique environment for nuclear burning because of rp-process. Burning helium with a lot of hydrogen (protons) present. Maybe put this at the beginning of the first open question?}
+
+Some bursts reach luminosities so high that radiation pressure starts to push some of the accreted material outward, making the star temporarily appear bigger and colder due to the expansion of the photosphere.  These \textit{photospheric radius expansion} (PRE) bursts are observed as near blackbodies with a temperature of $\sim 1$ keV at the burst peak, and $\sim 5-10$ keV when the photosphere touches back down to the surface. The lightcurve shown in the top panel of Fig.~\ref{fig:keek2018_fig3} is from such a PRE burst, with the bottom two panels showing best fit values for the blackbody temperature and emitting radius. The PRE phase of the burst is marked by the concurrent drop in temperature and jump in radius. \\
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/Keek2018_fig3_mod.png}
+    \caption{Lightcurve (top panel) and blackbody fits (second and third panels) from a Type I X-ray burst in the low-mass X-ray binary 4U 1820-30, observed by \textit{NICER} in august 2017. Adapted from \citet{Keek2018a}.}
+    \label{fig:keek2018_fig3}
+\end{figure}
+
+\textbf{before Nicer paragraph, talk about all the bursts seen by rxte (catalog paper). Sometimes very little expansion, sometimes large. Int zand wegberg paper super expansion : shell? Timescales question. How does the burst evolve from hydrostatic to wind? Maybe add 3hour burst fig.}
+
+The burst shown in Fig.~\ref{fig:keek2018_fig3}, which occured in August 2017 in the low-mass X-ray binary 4U 1820-30, marked an important moment in the field of Type I X-ray bursts as it was the first PRE burst observed by the \textit{Neutron Star Interior Composition Explorer} (\Nicer), an X-ray observatory on the International Space Station that was launched in 2017 \citep{Gendreau2017}.  \Nicer's principal objective is to constrain the dense matter equation of state by obtaining mass and radius measurements of neutron stars.  To accomplish this goal, NICER needs a wide spectral range, especially in the soft ($<1$ keV) band. This makes NICER the best tool yet to observe PRE bursts, as it can track the whole evolution of the photospheric radius \citep{Keek2018a}.  Indeed, previous X-ray instruments that had no soft response would observe an artifical dip in total luminosity, as the burst blackbody temperature would exit their spectral range. This contrast between {\Nicer} and previous observatories can be seen in figure \ref{fig:keek2018_fig1}. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/Keek2018_fig1_mod.jpg}
+    \caption{Lightcurve from a Type I X-ray burst in 4U 1820-30 considering different spectral ranges of observation. The solid line shows the count rate {\Nicer} spectral range, while the gray shaded area shows the count rate (scaled up by a factor of 5) for instruments with no soft X-ray response. The dotted line shows the count rate for the persistent (pre-burst) emission. Adapted from \citet{Keek2018a}.}
+    \label{fig:keek2018_fig1}
+\end{figure}
+
+\subsection{Open questions}
+There has been, in the past few years, a renewed interest in theoretical models of the outflows driving the PRE phase, marked for example by the works of \citet{YuHangWeinberg2018} and \citet{Herrera2020}. These have certainly been motivated in large part by the arrival of \Nicer, and the opportunity for theorists and observers to work together to answer a number of open questions regarding Type I X-ray bursts. We highlight two of these major open questions here.\\
+
+\noindent \textbf{Can heavy elements produced in the nuclear reaction networks at the onset of the burst be ejected during the subsequent outflows?}
+
+There has recently been mounting observational evidence, in the form of spectral edges and lines within Type I X-ray burst spectra \citep{IntZand2010,Kajava2017,Strohmayer2019}, that heavy elements such as iron and nickel are present at the photosphere during the expansion phase. This suggests that nuclear ashes are somehow dredged up, possibly via convection, and subsequently lifted up during the expansion. If a wind is driving the expansion, it is possible that these heavy elements are completely ejected from the star and deposited into the accretion disk, or even into the interstellar medium. \\
+
+The conditions and manner in which these ashes can be lifted is not well understood, and neither is the expected observational signature of heavy elements if they are truly present in the outflow. However, recent results from \Nicer {} data and presented in \citet{Strohmayer2019} show some promise for the latter. In the days following the burst from 4U 1820-30, shown in Fig.~\ref{fig:keek2018_fig3} and \ref{fig:keek2018_fig1}, three more bursts exhibiting a PRE phase were observed. Among these four, blackbody fits of the spectra revealed that two of the bursts had \textit{strong} expansion, with a photosphere of $\sim 100$ km, while the other two had \textit{weak} expansion, with a photosphere of $\sim 75$ km. By co-adding spectra of the bursts within each pair, as shown in Fig.~\ref{fig:strohmayer_burstpair_lines}, it became clear that the bursts had spectral lines in their spectra, of both emission and absorption nature. Further, the spectral shift of each line between the two pairs (weak burst lines appear \textit{redshifted} compared to the strong burst ones) is consistent with the lines being produced in a wind. Indeed, the lines in the weak bursts should be produced closer to the neutron star, and thus have stronger redshift. On top of this effect, wind models, which we will discuss in the next section, show that stronger bursts have larger wind velocities, which means the lines are more \textit{blueshifted}. \citet{Strohmayer2019} argue that both of these effects work together to create the spectral shifts seen in Fig.~\ref{fig:strohmayer_burstpair_lines}. While this represents quite a convincing argument for the existence of both burst-driven winds and heavy element ejection, it suffers from the lack of theoretical models of such winds, especially ones which include a heterogeneous gas composition with heavy materials, which are required to provide values for the emission radii and velocities of these lines.\\
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics{figures/Strohmayer2019_burstpair_lines.pdf}
+    \caption{Co-added spectra of two pairs of bursts in 4U 1820-30 observed by \Nicer. \textit{Top (bottom)}: Bursts with strong (weak) expansion, i.e a large (small) photosphere and small (high) blackbody temperature. Dotted lines indicate the centroid position of the emission and absorption lines, found from residuals of the absorbed blackbody fits. Data points and line energies are taken directly from \citet{Strohmayer2019}.}
+    \label{fig:strohmayer_burstpair_lines}
+\end{figure}
+
+\noindent\textbf{What is the time-dependent evolution of the photosphere during the PRE phase, and how does it vary from burst to burst?}
+
+%The aforementioned blackbody fits to burst spectra obviously come with the presupposition that burst spectra are indeed planckian, which has been challenged in the past \citep{VanParadijs1982,Titarchuk1994}.
+This question is especially relevant now with the availability of \Nicer {} data, which allows us to track the temperature throughout the expansion phase, and determine the emission radius with blackbody fits, as shown in Fig.~\ref{fig:keek2018_fig3}. If the blackbody fit is good, it is reasonable to associate this emission radius to the photospheric radius, which comes with the assumption of a spherical and uniformily emitting region. An important way in which this has been used is to label the peak of the blackbody temperature curve, after the expansion phase, as the \textit{touchdown} point, i.e the moment where the atmosphere collapses back down to the surface and the photosphere (which still presumably emits as a blackbody) is equal to the neutron star radius. For example in Fig.~\ref{fig:keek2018_fig3}, the touchdown point is at 30s. Using this and independent measurements of the neutron star mass, $M$-$R$ constraints have been placed on the neutron star EOS \citep{Ozel2016a}. \\
+
+It is not clear however if this method is truly valid, as the systematics of the photosphere evolution and touchdown point are not well understood. One possible scenario in which the touchdown interpretation would be incorrect is one in which the atmosphere does not collapse to the surface right after the main expansion phase, but rather remains slightly expanded above the surface, sustained by a still substantial burning layer flux. It would then slowly fall back down to the surface as the neutron star cools. The true touchdown point could therefore be much later than the PRE phase, far into the tail of the burst lightcurve, at which point the emission might not be planckian. Therefore, more works needs to be done to model the evolution of the photosphere, and how it relates to the observables, mainly the total luminosity and effective temperature of the spectra, as a function of time.
+
+\textbf{somewhere add the fact that Distance to neutron stars is obtained from Eddington limited bursts. We must understand this well!}
+
+
+\subsection{Basic theory and previous theoretical work}
+For a burst to exhibit PRE, a high enough luminosity must be attained in order to break hydrostatic equilibrium. The critical luminosity can be found by equating gravity and radiation pressure.  If we first consider the point of view of an observer located far from the star, this leads to the familiar \textit{Eddington luminosity}:
+\begin{equation}\label{eq:LEdd}
+    \Ledd = \frac{4\pi GMc}{\kappa_0}
+\end{equation}
+where $M$ is the mass of the star and $\kappa_0=0.2(1+X)$ g cm$^{-2}$ is the constant electron scattering opacity, where $X$ is the hydrogen fraction. Note that at the relevant densities and temperatures relevant to this problems, other sources of opacity are completely negligible compared to electron scattering. \\
+
+Now for an observer close to the star, at a distance $r$ from the center, this changes in two ways. If we consider general relativity, then the local effective gravity is increased by a factor related to the space-time metric we choose to use. We will consider the Schwarzchild metric, which describes the space-time surrounding a central non-rotating object. Also, in general, radiation interacts with the gas in ways that depend on both its density $\rho_0$ and temperature $T$. This must be reflected by a non-constant opacity. The \textit{local critical luminosity} is therefore:
+\begin{equation}\label{eq:Lcrit}
+    \Lcr=\frac{4\pi GMc}{\kappa(\rho_0,T)}\left(1-\frac{2GM}{rc^2}\right)^{-1/2}    
+\end{equation}
+At large radii, the temperature and density are small and the opacity goes to the constant $\kappa_0$, such that $\Lcr\rightarrow \Ledd$. General relativity also has the effect of differentiating the observed luminosity between different observers.  If the local luminosity is $L$, the luminosity seen by an observer at infinity is:
+\begin{equation}\label{eq:Linf}
+    \Linf=L\left(1-\frac{2GM}{rc^2}\right)
+\end{equation}
+There are two metric terms here, one for time dilation which makes photons come out at a slower rate, and another for redshift, which lowers the total energy of the radiation field. \\
+
+
+The temperature dependence of the opacity is significant in the context of bursts, since at high temperatures, when electron reach relativistic velocities and photon collisions become subject to inelastic Compton scattering, the electron scattering opacity is drastically reduced. \citet{Paczynski1983} gives the following interpolation formula based on tabulated values of \citet{Buchler1976}:
+\begin{equation}\label{eq:kappa}
+    \kappa(T)=\kappa_0 \left[1+\left(\frac{T}{4.5\times 10^8 \text{ K}}\right)^{0.86}\right]^{-1}
+\end{equation}
+In bursts, temperatures of over $10^9$ K are readily attained. This creates a situation where the luminosity can be very high, even \textit{super-Eddington} (refering to Eq.~\ref{eq:LEdd}), while at the same time being \textit{sub-critical} (refering to Eq.~\ref{eq:Lcrit}). The atmosphere can still expand, even in the sub-Eddington case, because any luminosity causes an outward radiation pressure which reduces the effective gravity:
+\begin{equation}\label{eq:geff}
+    g_\text{eff}=g\left(1-\frac{L}{\Lcr}\right)
+\end{equation}
+So the temperature dependence of the opacity already reveals the structure of the outflows: we expect a compact, geometrically thin envelope in hydrostatic equilibrium that will gradually transition into an extended region of gas as the temperature and $\Lcr$ drop, allowing the photons to "push" the gas more effectively.\\
+
+But when discussing this luminosity driven expansion of the atmosphere, we are actually talking about two possible regimes. The first, most well-known case, is the \textit{super-Eddington wind} regime, which will inevitably occur if $L^\infty>\Ledd$, since this inequality implies mass loss.  Indeed, the excess photon energy must be used to unbind accreted material, giving the approximate relation:
+\begin{equation}
+    \frac{dM}{dt}\approx \frac{L^\infty-\Ledd}{GM/R}
+\end{equation}
+\textbf{Super-Eddington winds are ubiquitous in massive stars, where the main driving mechanism is kinetic energy deposition (see for reference \citet{Quataert2016}).  These Type I X-ray burst super-Eddington winds however are radiation pressure driven, i.e it is the photons, trapped in the optically thick fluid, that transfer their energy as they diffuse through the gas. Therefore, these winds are extremely sensitive to the exact temperature dependent scattering opacity, which is not the case for massive stellar winds as per \citet{Quataert2016}.}\\
+
+The wind regime has been studied extensively in the past. Many papers in the 1970-1980's demonstrated calculations of steady-state wind solutions, starting with \citet{Ebisuzaki1983} and \citet{Kato1983a}, who solved time-independent Newtonian hydrodynamics and optically thick radiative transfer equations with different assumptions and approximations.  Various improvements were made in later years, such as a transition into optically thin regions \citep{Quinn1985}, the inclusion of general relativity \citep{Paczynski1986b} and more detailed radiative transfer \citep{Joss1987}.  More recently, \citet{YuHangWeinberg2018} performed time-dependent calculations of winds for the first time, going back to Newtonian gravity and pure optically thick radiative transfer, but with a focus on tracking the composition of different elements over time and space.\\
+
+The second, less discussed regime, is the expanded envelope in hydrostatic equilibrium, which occurs when $L^\infty \lesssim \Ledd$. With a smaller luminosity, the surface temperature is smaller than in the wind case, such that $L$ is in fact closer to $\Lcr$ than in the wind case, triggering expansion given the effective gravity in Eq.~\eqref{eq:geff}. Since there is no mass loss and no velocity, there is no net transfer of energy from the photons to the gas. Therefore, the luminosity $L^\infty$ is in this case a constant throughout the model. The local luminosity, however, is a function of radius, according to Eq.~\eqref{eq:Linf}. The expansion will self-adjust such that $L\lesssim \Lcr$ at every radius in order to maintain hydrostatic equilibrium. In fact, this expanded envelope regime is a general relativistic effect, as the redshift-dependent luminosity is a requirement for maintaining equilibrium. This was explained by \citet{Paczynski1986a}, the only paper in the literature discussing relativistic expanded envelopes in relation to Type I X-ray bursts, who pointed out that previous attempts to model envelopes without general relativity (or without temperature dependent opacity) were fundamentally incorrect.\\
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figures/schematic.png}
+%     \caption{Schematic for the different regimes of expansion (or \textit{non}-expansion), and the associated luminosities. Presented in a talk for a conference on X-ray bursts \citep{GuichandutLeiden2019}.}
+%     \label{fig:luminosity_schematic}
+% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/diagram.png}
+    \caption{Diagram summarizing the relevant quantities in the two PRE burst expansion regimes. We explain the definitions for the critical point $r_c$ and photospheric radius $r_\text{ph}$ and how to calculate solutions to these structures in Chapter 3 (winds) and Chapter 4 (envelopes).}
+    \label{fig:diagram}
+\end{figure}
+
+
+
+\subsection{Outline}
+
+\textbf{Don't undersell. We want to make progress in the models to get closer to answering all the questions layed out earlier. We're making a sequence of fully consistent models. Grid of models as an outer boundary condition for time dependent codes. }
+
+Never before have the two expansion  regimes discussed in the previous section been compared to each other. The aim of this work is to calculate steady-state wind and expanded envelope models with self-consistent input physics and assumptions, then analyze them together, linking the main observables (observed luminosity, photospheric radii and temperatures) to the state of the burning layer (base luminosity, temperature and density) at any given time in the evolution of the bursts.\\
+
+We begin with a derivation of the equations of radiation hydrodynamics used throughout this work in Chapter 2, then describe the numerical method and show the results for the wind models in Chapter 3, and expanded envelope models in Chapter 4. Finally, we compare the two regimes and make final remarks on the use of these stationary solutions to describe the dynamics of different parts of PRE bursts in Chapter 5.
+
+\biblio
+
+\end{document}
+\

@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+
+\usepackage{natbib}
+
+% Language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french,english]{babel}
+
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+% Figures
+\usepackage{float}
+
+% Links
+\usepackage{url}
+\usepackage{hyperref}
+
+\usepackage{subfiles}
+
+% \numberwithin{equation}{chapter} % Equations formatted as chpt#.eq#
+\numberwithin{equation}{section} % Equations formatted as sec#.eq#
+\numberwithin{figure}{section}
+
+
+
+% How to have a bibliography both when compiling the main file and the subfiles individually : solution found at https://latex.org/forum/viewtopic.php?t=10320
+\def\biblio{\bibliographystyle{plainnat}\bibliography{references,textbook_references}}
+\begin{document}
+\def\biblio{}
+
+\tableofcontents
+\newpage
+    
+\subfile{sections/introduction}
+\newpage
+\subfile{sections/chapter2_equations}
+\newpage
+\subfile{sections/chapter3_winds}
+\newpage
+\subfile{sections/chapter4_atmospheres}
+\newpage
+\subfile{sections/chapter5_compare}
+
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{references,textbook_references}
+
+\end{document}
+

@@ -1,0 +1,322 @@
+\documentclass[../main.tex]{subfiles}
+
+\def\-{\raisebox{.75pt}{-}} % shorter minus sign : \-
+\newcommand{\chris}[3]{\Gamma^{#1}_{#2#3}} % christoffel symbol : \chris{\alpha}{\beta}{\sigma}
+\newcommand{\Partial}[2]{\frac{\partial}{\partial#1}\left(#2\right)} % del by delx (y) : \Partial{x}{y}
+
+\newcommand{\Ae}{A_\text{e}}
+\newcommand{\Be}{B_\text{e}}
+\newcommand{\Ce}{C_\text{e}}
+
+\newcommand{\Mdot}{\dot{M}}
+\newcommand{\Edot}{\dot{E}}
+
+\newcommand{\Ledd}{L_\text{Edd}}
+\newcommand{\mach}{\mathcal{M}}
+\newcommand{\ph}{_\text{ph}}
+
+\begin{document}
+\section{Prior on radiation hydrodynamics}
+
+The mathematical framework for the theory of radiation hydrodynamics relevant to this thesis is laid out here. The initial assumptions are that of a spherically symmetric problem around a slowly rotating neutron star, where the optically thick fluid is in local thermodynamic equilibrium. We start by writing down the main equations that dictate the physical processes at work and explain the main approximations that are to be applied to the both the gas' dynamics and the radiative transfer. Then, we derive the four stationary equations of radiation hydrodynamics that describe any process taking place under our initial assumptions. We then lay out the gas equation of state that relates the extensive variables for the fluid and conclude with the final equations of structures that are used throughout this project. Some of the longer and more involved derivations have been left out of this section for brevity and are instead included in the appendix.
+
+\subsection{General relativity}
+
+Since this work focuses on fluid dynamics on a compact object, it is expected that general relativistic effects might be important.  We know this from a simple preliminary analysis of the Schwarzschild radius:
+\begin{equation}
+    r_s=\frac{2GM}{c^2}
+\end{equation}
+For a typical NS with a mass of $1.4 M_\odot$, $r_s$ is of just over 4 km, while the base radius is somewhere in between 10 and 13 km.  With a value of $\sim 2-3$, the ratio of these two radii is much lower than for example the sun or the earth, where it takes approximate values of  $2\times 10^5$ and $7\times 10^5$ respectively.  If Newtonian physics are generally appropriate to study these common objects, one has to expect corrections brought on by GR to be relevant in the case of NSs.  These corrections include a higher effective surface gravity and critical luminosity, a redshift of outgoing radiation and of course time dilation, which requires careful treatment of fluid velocity.\\
+
+We begin with the Schwarzschild metric, which describes the curvature of space-time around a spherical and non-rotating central object:
+\begin{equation}
+ds^2=g_{\mu\nu}dx^\mu dx^\nu=-\zeta^2 c^2dt^2+\zeta^{-2}dr^2 +r^2(d\theta^2+\sin^2\theta d\phi^2)
+\end{equation}
+with the curvature parameter:
+\begin{equation}
+    \zeta=(1-r_s/r)^{1/2}
+\end{equation}
+
+The metric $g_{\mu\nu}$ and its inverse $g^{\mu\nu}$ are used as usual to lower and raise indices, according to the Einstein summation convention.  In what follows, greek letters ($\mu$,$\nu$) will be used to denote the variables of the 4D space-time, and normal letters ($i$,$j$) 3D space.  The four-velocity, defined as $U^\mu=dx^\mu/d\tau$ with $\tau$ being the proper time, has the normalization property $U_\mu U^\mu=-c^2$.  This allows us to define an energy parameter for the flow $\Psi$.  For purely radial motion ($U^\theta=U^\phi=0$):
+\begin{equation}\label{eq:Psi}
+    \Psi\equiv -U_t=\sqrt{\zeta^2+(U^r/c)^2}
+\end{equation}
+
+Next, we define two basis, or \textit{frames}, in this metric, which we will use to describe different fluid and radiation quantities.  The \textbf{fixed frame} $x^{\hat{\mu}}=(c\hat{t},\hat{r},\hat{\theta},\hat{\phi})$ is an inertial frame which has no proper velocity with respect to the central object.  For an observer in this frame, the fluid has a proper velocity $\bm{v}=(v^r,v^\theta,v^\phi)$.  This can be related to the coordinate basis through the energy parameter:
+\begin{equation}
+    v^r=U^r\Psi^{-1}\equiv u
+\end{equation}
+Putting this back into Eq.~\eqref{eq:Psi} gives a simple form for the Lorentz factor:
+\begin{equation}\label{eq:gamma}
+\gamma\equiv\left(1-\frac{u^2}{c^2}\right)^{-1/2}=\frac{\Psi}{\zeta}
+\end{equation}
+
+The \textbf{comoving frame} $x^{\hat{\mu}}_\text{co}=(c\hat{t}_\text{co},\hat{r}_\text{co},\hat{\theta}_\text{co},\hat{\phi}_\text{co})$ is one that is fixed with respect to the moving fluid and moves with velocity $\bm{u}$ with respect to the fixed frame.  Therefore, a Lorentz transformation is used to link the two frames.  The full details are left to the appendix, but it is important to take note of the fact that $\partial/\partial x_\text{co}^{\hat{\mu}}\neq \partial/\partial x^{\hat{\mu}}$.\\
+
+\subsection{Stress-energy tensors}
+We start with the stress-energy tensor for the matter.  For our purposes, we can assume the case of a perfect fluid or gas (can be fully be described by its pressure $P_g$ and rest-mass density $\rho$) in thermodynamic equilibirum.  As such, we are ignoring effects of viscosity and heat conduction within the fluid.  The stress-tensor in this case is:
+\begin{equation}
+    T^{\mu\nu}=\omega_gU^\mu U^\nu +P_gg^{\mu\nu}
+\end{equation}
+where $\omega_g$ is the sum of the rest-mass energy and enthalpy of the gas, per unit proper volume:
+\begin{equation}
+    \omega_g=\rho c^2+P_g+U_g
+\end{equation}The gas internal energy $U_g$ is some function of $\rho$ and $P_g$, depending on the equation of state.  For an ideal monatomic gas, $P_g=\frac{kT\rho}{\mu m_p}$ and $U_g=\frac{3}{2}P_g$, where $\mu$ is the mean molecular weight of the particular gas.  Note that this tensor is not expressed in either the fixed or comoving frame, but rather the initial coordinate frame $x^\mu=(ct,r,\theta,\phi)$.\\
+
+A separate stress tensor is used to involve the radiation. We can define the moments in the usual way in either of our two inertial frames. The zeroth, first and second moments are respectively the radiation energy density $E$, the radiation flux $F^i$ and the radiation pressure tensor $P^{ij}$, where $i,j=r,\theta,\phi$.  We will use the symbols "$\bar{\;}$" and "$_\text{co}$" to differentiate between the two frames.  In terms of the specific intensity $I_\nu(x^\mu,\bm{n})$:
+\begin{align}
+    &\bar{E}=\frac{1}{c}\iint \bar{I_\nu}d\bar{\nu}d\bar{\Omega}&& E_\text{co}=\frac{1}{c}\iint I_{\nu_\text{co}}d\nu_\text{co}d\Omega_\text{co}\nonumber\\
+    &\bar{F}^i=\iint \bar{I_\nu}\bar{n}^id\bar{\nu}d\bar{\Omega}&& F^i_\text{co}=\iint I_{\nu_\text{co}}n^i_\text{co}d\nu_\text{co}d\Omega_\text{co}\nonumber\\
+    &\bar{P}^{ij}=\frac{1}{c}\iint \bar{I_\nu}\bar{n}^i\bar{n}^jd\bar{\nu}d\bar{\Omega}&& P^{ij}_\text{co}=\frac{1}{c}\iint I_{\nu_\text{co}}n^i_\text{co}n^j_\text{co}d\nu_\text{co}d\Omega_\text{co}
+\end{align}
+where $\nu$ is the photon frequency as measured in the frame, $d\Omega=\sin\theta d\theta d\phi$ is the solid angle element, $p^\alpha$ is the four-momentum and $n^i=p^i/h\nu$ is the projection along a specific axis.  In any given frame, the four-dimensional symmetric radiation stress-energy tensor is typically written as \citep{MihalasMihalas1984}:
+$$\bm{R}=\begin{bmatrix}E&\bm{F}^\text{T}/c\\\bm{F}/c&\bm{P}\end{bmatrix}$$
+For a spherically symmetric radiation field, the angular fluxes and pressure shears ($F^\theta$,$F^\phi$,$P^{r\theta}$,$P^{r\phi}$,$P^{\theta\phi}$) all vanish.  Also, since this tensor is a particular case of the general stress-energy tensor for electromagnetic waves\footnote{In CGS units : $T^{\mu\nu}=
+\frac{1}{4\pi}\left(F^{\mu\alpha}F^\nu_\alpha-\frac{1}{4}\eta^{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\right)$, where $F^{\mu\nu}$ is the electromagnetic tensor.  See \citet{Carroll2004}.}, it has the property of being traceless ($R^\alpha{}_\alpha=\eta_{\alpha\beta}R^{\alpha\beta}=0$ where $\eta_{\alpha\beta}$ is a flat metric with $(-,+,+,+)$ signature).  We ensure this by writing:
+$$P^{\theta\theta}=P^{\phi\phi}=\frac{E-P^{rr}}{2}$$
+
+We can specify the comoving tensor knowing the nature and behavior of the radiation.  First, since we consider the radiation to be purely thermal, the local energy density $E_\text{co}$ is given by classical the Stefan-Boltzmann expression $aT^4\equiv U_R$, where $T$ is the local temperature of the gas.  Also, in the optically thick approximation, we can say that the radiation in the comoving frame is mainly isotropic, with only a small anisotropic contribution that transports the flux outwards.  Therefore, all components of the pressure diagonal in this frame are equal to a third of the energy density: $P^{rr}_\text{co}=P^{\theta\theta}_\text{co}=P^{\phi\phi}_\text{co}=U_R/3$. Finally, the comoving radial flux is just a function of the local luminosity $L$:
+\begin{equation}
+    F^r_\text{co}=L/4\pi r^2\equiv F
+\end{equation}
+This is the same for the fixed flux which we write as $\bar{F}$. The radiation tensors can now be written as:
+\begin{gather}
+\bm{\bar{R}}=\begin{bmatrix}\bar{E} & \bar{F}/c &0&0\\\bar{F}/c &\bar{P} &0&0\\0&0&(\bar{E}-\bar{P})/2&0\\0&0&0&(\bar{E}-\bar{P})/2\end{bmatrix}
+\nonumber\\
+\bm{R}_\text{co}=\begin{bmatrix}U_R & F/c&0&0\\F/c&U_R/3&0&0\\0&0&U_R/3&0\\0&0&0&U_R/3\end{bmatrix}
+\end{gather}  
+The two tensors are related by a double Lorentz transform, leading to the following relations:
+\begin{align}
+    \bar{E}&=\gamma^2\left[\left(1+\frac{1}{3}\frac{u^2}{c^2}\right)U_R + \frac{2u}{c^2}F\right]\label{eq:E_frametransform}\\
+    \bar{F}&=\gamma^2\left[\frac{4}{3}uU_R + \left(1+\frac{u^2}{c^2}\right)F\right]\label{eq:F_frametransform}\\
+    \bar{P}&=\gamma^2\left[\left(\frac{u^2}{c^2}+\frac{1}{3}\right)U_R + \frac{2u}{c^2}F\right]\label{eq:P_frametransform}
+\end{align}
+Finally, we can find the radiation tensor in the coordinate frame:
+\begin{equation}
+   \bm{R}=\begin{bmatrix}\zeta^{\-2}\bar{E}&\bar{F}/c&0&0\\\bar{F}/c&\zeta^2\bar{P}&0&0\\0&0&r^{\-2}(\bar{E}-\bar{P})/2\\0&0&0&(r\sin\theta)^{\-2}(\bar{E}-\bar{P})/2\end{bmatrix} 
+\end{equation}
+
+An essential condition that is to be respected is the vanishing of the divergence of the total stress-energy tensor:
+\begin{equation}\label{eq:stresstensordivergence}
+    (T^{\mu\nu}+R^{\mu\nu})_{;\nu}=0
+\end{equation}
+This condition ensures that there can be a solution to the Einstein field equations.  Eq.~\eqref{eq:stresstensordivergence} also implicitly describes the exchange of energy and momentum between the radiation field and the gas. It is useful to separate this equation using the radiation four-force density, which in any frame is expressed as \citep{MihalasMihalas1984}:
+\begin{align}
+    G^0&=c^{-1}\int d\nu\int d\Omega[\chi I_\nu(\bm{n})-\eta(\bm{n})]\\ 
+    G^i&=c^{-1}\int d\nu\int d\Omega[\chi I_\nu(\bm{n})-\eta(\bm{n})]n^i
+\end{align}
+where $\chi_\text{co}$ is the opacity (absorption plus scattering) per unit length and $\eta_\text{co}$ is the emissivity per unit volume. This four-vector has the useful property:
+\begin{equation}
+    G^\mu\equiv -R^{\mu\nu}_{;\nu}=T^{\mu\nu}_{;\nu}
+\end{equation}
+$G^t$ represents the rate of energy input from the radiation into the gas, and $G^i$ represents the rate of momentum input.  These rates are well interpreted in the comoving frame. We introduce the local heating and cooling functions, $\Gamma_\text{co}$ and $\Lambda_\text{co}$:
+\begin{align}
+    \Gamma_\text{co}&=\frac{1}{c}\int d\nu_\text{co}\int d\Omega_\text{co}\chi_\text{co}I_{\nu_\text{co}}\\
+    \Lambda_\text{co}&=\frac{1}{c}\int d\nu_\text{co}\int d\Omega_\text{co}\eta_\text{co}
+\end{align}
+ The mean opacity coefficient is given by:
+\begin{equation}
+    \bar{\chi}_\text{co}F^i_\text{co}=\frac{1}{c}\int d\nu_\text{co}\int d\Omega_\text{co}\chi_\text{co}I_{\nu_\text{co}}n^i_\text{co}
+\end{equation}
+This leads to :
+\begin{align}
+    G^{\hat{t}}_\text{co}&=(\Gamma_\text{co}-\Lambda_\text{co})/c\\
+    G^{\hat{i}}_\text{co}&=\bar{\chi}_\text{co}F^i_\text{co}/c
+\end{align}
+The latter comes from the assumption that the photons emitted or scattered in the comoving frame are isotropic, such that the angle averaged emissivity is zero. We will find later that we can get rid of the $\Gamma_\text{co}$ and $\Lambda_\text{co}$ functions to obtain our final stationary equations.  Therefore, the microphysics describing the interaction between the matter and the radiation will be fully described by the mean opacity \textit{coefficient} in the comoving frame $\bar{\chi}_\text{co}$.  For familiarity, we will instead use the mean opacity $\kappa$, which has units of area over mass:
+\begin{equation}
+    \kappa\equiv \frac{\bar{\chi}_\text{co}}{\rho}
+\end{equation}
+Finally, $G$ can also be written in the coordinate frame as:
+\begin{align}
+    G^t&=\frac{\gamma}{\zeta}\left(G^{\hat{t}}_\text{co}+\frac{u}{c}G^{\hat{r}}_\text{co}\right)\\
+    G^r&=\Psi\left(\frac{u}{c}G^{\hat{t}}_\text{co}+G^{\hat{r}}_\text{co}\right)
+\end{align}
+where we have assumed a purely radial flux.\\
+
+\subsection{Hydrodynamics equations}
+It is straightforward to obtain the equation for conservation of mass from the universal covariant continuity equation:
+\begin{equation}
+    (nU^\mu)_{;\mu}=0
+\end{equation}
+where $n$ is the number density of particles. Applying the derivatives according to the Schwarzchild metric, we obtain:
+\begin{equation}
+\frac{1}{\zeta^2}\Partial{t}{n\Psi}+\frac{1}{r^2}\Partial{r}{r^2n u\Psi} = 0 \label{eq:masscons}
+\end{equation}
+Then, we can obtain three more equations from the zero-divergence property of the stress tensor (Eq.~\ref{eq:stresstensordivergence}), which has been re-written using the radiation four-force density $G^\mu$ in the last section. From $T^{\mu\nu}_{;\nu}=G^\mu$, we can obtain the $r$-momentum and energy conservation equations using projection operators - details are in the appendix.  These equations are: 
+\begin{align}
+    &\frac{\Psi}{\zeta^2}\Partial{t}{u \Psi}+\frac{1}{2}\Partial{r}{u\Psi}^2+\frac{GM}{r^2} +\frac{u\gamma^2}{\omega_g}\frac{\partial P_g}{\partial t} +\frac{c^2\Psi^2}{\omega_g}\frac{\partial P_g}{\partial r} = \frac{\Psi c}{\omega_g}\rho\kappa F\label{eq:momcons}\\
+    &\frac{n\Psi}{\zeta^2}\Partial{t}{\frac{\omega_g}{n}}+n u\Psi\Partial{r}{\frac{\omega_g}{n}}-\frac{\Psi}{\zeta^2}\frac{\partial P_g}{\partial t}-u\Psi\frac{\partial P_g}{\partial r}=\Lambda_\text{co}-\Gamma_\text{co}\label{eq:enercons}
+\end{align}
+
+Finally, the radiation moment equations are to be found from 
+$R^{\mu\nu}_{;\nu}=-G^\mu$. The zeroth moment, or energy equation, is $\mu=t$, while the first moment, or radiation force balance equation, is $\mu=r$.
+\begin{align}
+    &\frac{1}{\zeta^2}\frac{\partial \bar{E}}{\partial t}+\frac{1}{\zeta^2r^2}\Partial{r}{r^2\zeta^2\bar{F}}=\frac{\gamma}{\zeta}\left(\Lambda_\text{co}-\Gamma_\text{co}-\frac{u}{c}\rho\kappa F\right)\label{eq:radenercons}\\
+    &\frac{\partial \bar{F}}{\partial t}+c^2\zeta^2\frac{\partial\bar{P}}{\partial r}+\frac{GM}{r^2}(\bar{E}+\bar{P})+\frac{c^2\zeta^2}{r}(3\bar{P}-\bar{E})\nonumber\\
+    &\hspace*{5cm}\qquad=u\Psi(\Lambda_\text{co}-\Gamma_\text{co})-\Psi c\rho\kappa F\label{eq:radmomcons}
+\end{align}
+
+Equations \eqref{eq:masscons}-\eqref{eq:radmomcons} fully describe the time evolution of the density, velocity, internal energy, radiative energy and flux of a spherically symmetric, optically thick fluid in thermodynamic equilibrium, in a Schwarzchild metric. The only missing piece is a set of equations to connect the gas' intensive variables (temperature, density, pressure). This piece is the equation of state (EOS), which we will describe in section \ref{sec:eos}. \\ 
+
+But first, we can drastically simplify the equations by removing the time-dependent terms, with the scope of this project being on steady-state solutions. With only derivatives by $r$ remaining, we will use the prime symbol ($'$) to denote derivatives. In Eq.~\eqref{eq:masscons}, we can replace $n$ by $\rho$ and add a factor of $4\pi$ for spherical geometry such that the conserved quantity is the mass-loss rate $\dot{M}$:
+\begin{equation}\label{eq:Mdot}
+    \boxed{\dot{M}=4\pi r^2\rho u\Psi}
+\end{equation}
+The $r$-momentum equation \eqref{eq:momcons} can be written as:
+\begin{equation}\label{eq:stationarymomcons}
+     \boxed{\omega_g(\ln\Psi)' + P_g' - \frac{1}{c\Psi}\rho\kappa F = 0}
+\end{equation}
+
+Combining Eq.~\eqref{eq:radenercons} and \eqref{eq:radmomcons} to remove the heating and cooling functions, we obtain an equation that describes the interchange between radiative energy, flux and pressure. In steady-state, this is:
+\begin{equation}
+    c^2\zeta^2\bar{P}'-\frac{u}{r^2}(r^2\zeta^2\bar{F})'
+    +\frac{GM}{r^2}(\bar{E}+\bar{P})+\frac{c^2\zeta^2}{r}(3\bar{P}-\bar{E})+\frac{\zeta c}{\gamma}\rho\kappa F=0
+\end{equation}
+Transforming the fixed frame quantities to the comoving frame using Eq.~\eqref{eq:E_frametransform}-\eqref{eq:P_frametransform} and assembling the derivatives, we get:
+\begin{equation}\label{eq:threetermradequation}
+    \frac{(\Psi^4U_R)'}{3\Psi^3}+\frac{(r^2u^2\Psi^2F)'}{c^2r^2u\Psi}+\frac{\rho\kappa F}{c}=0
+\end{equation}
+We can simplify this equation even further using the optically thick approximation. In this regime, the flux is of order of magnitude $\tau^{-1}cU_R$, where $\tau$ is the optical depth which is larger than 1 \citep{Thorne1981}. To make an order of magnitude comparison, let us set macroscopic length scale $\mathscr{L}\sim \tau/\rho\kappa$.  Then :
+\begin{align}
+    &\frac{(\Psi^4U_R)'}{3\Psi^3} \sim \frac{U_R}{\mathscr{L}}\\
+    &\frac{(r^2u^2\Psi^2F)'}{c^2r^2u\Psi} \sim \frac{u}{c^2}\frac{cU_R}{\tau\mathscr{L}}\sim\frac{u}{c\tau}\frac{U_R}{\mathscr{L}}\\
+    &\frac{\rho\kappa F}{c}\sim\frac{\tau}{\mathscr{L}c}\frac{cU_R}{\tau}\sim\frac{U_R}{\mathscr{L}}
+\end{align}
+In this work, we will be dealing with non-relativistic fluids ($u\ll c$) which makes it evident that the middle term in Eq.~\eqref{eq:threetermradequation} can be neglected, and we end up with a simple expression for the flux as a function of the energy density gradient:
+\begin{equation}\label{eq:photondiffusion}
+    \boxed{F=\frac{c}{3\kappa\rho}\frac{(\Psi^4U_R)'}{\Psi^3}}
+\end{equation}
+Since $U_R=aT^4$, we have recovered the standard photon diffusion equation, with some additional factors and derivatives of $\Psi$, which account for photon redshift and length contraction.\\
+
+All that is left to be found is an energy equation. We again combine to remove the heating and cooling functions, this time the two energy equations \eqref{eq:enercons} and \eqref{eq:radenercons}:
+\begin{equation}
+    n u\Psi^2\left(\frac{\omega_g}{n}\right)'+\frac{1}{r^2}\left(r^2\zeta^2\bar{F}\right)'-u\Psi^2P_g'+\frac{u\Psi}{c}\rho\kappa F=0
+\end{equation}
+Adding $u\Psi^2$ times Eq.~\eqref{eq:stationarymomcons} gets rid of the $P_g$ and $F$ terms. We use mass conservation written as $(r^2nu\Psi)'=0$ to remove the $n'$ term.
+\begin{equation}
+    0=\frac{1}{r^2}\left(r^2\Psi^2u\omega_g+r^2\zeta^2\bar{F}\right)'
+\end{equation}
+We have arrived at a Bernoulli equation for the flow, where the energy in the steady-state is a balance of kinetic energy ($u$), enthalpy \& rest mass ($\omega_g$) and radiation ($\bar{F}$), with GR corrections ($\Psi$ and $\zeta$). Integrating and using the frame transformation for $\bar{F}$:
+\begin{equation}
+    C=r^2\Psi^2u\rho\left(\frac{\omega_g+4/3U_R}{\rho}\right)+\Psi^2\left(1+\frac{u^2}{c^2}\right)r^2F
+\end{equation}
+Finally, we multiply by $4\pi$ and use the definitions for $\dot{M}$ (\ref{eq:Mdot}) and $L^\infty$ (\ref{eq:Linf}) to obtain the final energy equation :
+\begin{equation}\label{eq:Edot}
+    4\pi C=\boxed{\dot{M}\Psi\left(\frac{\omega_g+4/3U_R}{\rho}\right)+\left(\frac{1+u^2/c^2}{1-u^2/c^2}\right)L^\infty=\dot{E}}
+\end{equation}
+It represents the fact that the total energy loss rate of the flow, which we defined as $\dot{E}$, is the rate of change of rest mass energy, enthalpy and radiative energy and pressure, plus the luminosity as seen by an observer at infinity, but boosted by a Doppler-like factor.\\
+
+This is the end of the preliminary derivations, as we have derived our four equations to fully describe the steady-state flow : conservation equations for mass and energy (\ref{eq:Mdot},\ref{eq:Edot}), the momentum equation (\ref{eq:stationarymomcons}) and the photon diffusion equation (\ref{eq:photondiffusion}). All of the calculations in this thesis are founded on these four equations.
+
+\subsection{Equation of state}\label{sec:eos}
+This is where our first divergence from existing literature begins. Indeed, while previous work on expanded atmospheres and winds considered an ideal gas EOS, we are considering a more accurate one that includes degenerate electron corrections.  These corrections become important at high densities and temperatures, conditions that we expect to reach close to the neutron star surface.\\
+
+Our EOS is written as a partially degenerate ionized gas pressure, with contributions from ions (i) and both non-relativistic and relativistic electrons (e).  For these, we use fitting formulas given by \cite{Paczynski1983}, which interpolate smoothly between the non-degenerate (nd), degenerate non-relativistic (dnr) and degenerate relativistic (dr) regimes of electron pressure:
+\begin{equation}
+    P_\text{i}=\frac{kT\rho}{\mu_\text{i}m_H} \qquad 
+    P_\text{end}=\frac{kT\rho}{\mu_\text{e}m_H} \qquad
+    P_\text{ednr}=K_\text{nr}\rho^{5/3} \qquad
+    P_\text{edr}=K_\text{r}\rho^{4/3}
+\end{equation}
+where $\mu_\text{i}$ and $\mu_\text{e}$ are the mean molecular weight per ion and electron, $m_H$ is the hydrogen mass and $k$ is the Boltzmann constant. The electron pressure constants are taken from \citet{Paczynski1983}:
+\begin{equation}
+    K_\text{nr}=9.91\times 10^{12}\mu_\text{e}^{-5/3} \qquad 
+    K_\text{r}=1.231\times 10^{15}\mu_\text{e}^{-4/3}
+\end{equation}
+The interpolation formulas are:
+\begin{equation}\label{eq:eos_electron_interp}
+    P_\text{ed}=(P_\text{ednr}^{-2}+P_\text{edr}^{-2})^{-1/2} \qquad
+    P_\text{e}=(P_\text{end}^2+P_\text{ed}^2)^{1/2}
+\end{equation}
+The internal energy of the ions is the ideal gas formula $U_i=\frac{3}{2}P_i$, and we will define the internal energy of the electrons $U_e$ later. The total gas pressure and internal energy are therefore:
+\begin{equation}
+    P_g=P_\text{i}+P_\text{e} \qquad U_g=U_\text{i}+U_\text{e}
+\end{equation}
+Note that we define $U$ as an energy density (per unit volume) rather than a specific energy (per unit mass) as in \cite{Paczynski1983}.  We also define the following pressure ratio parameters:
+\begin{gather}
+    \label{eq:pressure_params}
+    \beta_i=\frac{P_\text{i}}{P_g+U_R/3} \qquad
+    \beta_e=\frac{P_\text{e}}{P_g+U_R/3} \qquad%\nonumber 
+    \alpha_1=\left(\frac{P_\text{end}}{P_\text{e}}\right)^2 \quad
+    \alpha_2=\left(\frac{P_\text{ed}}{P_\text{e}}\right)^2 \nonumber\\
+    f=\frac{5}{3}\left(\frac{P_\text{ed}}{P_\text{ednr}}\right)^2+\frac{4}{3}\left(\frac{P_\text{ed}}{P_\text{edr}}\right)^2
+\end{gather}
+Note that we are using the common $\beta$ parameter notation for ratios of specific pressure over the total (gas+radiation) pressure. The $f$ parameter leads to the expression for $U_\text{e}$ as per \citet{Paczynski1983}:
+\begin{equation}
+    \label{eq:Ue}
+    U_\text{e}=\frac{P_\text{e}}{f-1}
+\end{equation}
+The EOS will enter the models through the $\omega_g$ and $P_g'$ terms in the hydrodynamic equations.
+
+\subsection{Structure equations}
+The last step is to combine the flow and radiation equations to the equation of state in order to obtain equations for the first derivatives of the temperature, density and velocity. These are the equations that will be numerically integrated to produce solutions for both winds and envelopes.\\
+
+First, the temperature gradient equation can be obtained by expanding the photon diffusion equation \eqref{eq:photondiffusion}, giving:
+\begin{align}
+    \frac{1}{T}\frac{dT}{dr}&=\frac{3\kappa\rho F}{4acT^4\Psi}-\frac{1}{\Psi}\frac{d\Psi}{dr}\nonumber\\
+    &=\frac{3\kappa\rho F}{4acT^4\Psi}-\frac{GM}{c^2r^2\zeta^2}-\frac{\gamma^2v}{c^2}\frac{dv}{dr}\label{eq:dTdr_initial}
+\end{align}
+The velocity gradient equation will come from the momentum equation. This is also where the equation of state comes in with the $P_g'$ term. For the ions, we simply have:
+\begin{equation}
+    \frac{dP_i}{dr}=\frac{P_i}{T}\frac{dT}{dr}+\frac{P_i}{\rho}\frac{d\rho}{dr}
+\end{equation}
+For the electrons, it is easier to use logarithm derivatives:
+\begin{equation}
+    \frac{d\ln P_\text{e}}{dr}=\frac{\partial \ln P_\text{e}}{\partial\ln\rho}\frac{d\ln\rho}{dr} + \frac{\partial \ln P_\text{e}}{\partial\ln T}\frac{d\ln T}{dr}
+\end{equation}
+because the interpolation formulas \eqref{eq:eos_electron_interp} lead to:
+\begin{equation}
+    \frac{\partial \ln P_\text{e}}{\partial\ln\rho} = \alpha_1+\alpha_2 f \qquad\qquad
+    \frac{\partial \ln P_\text{e}}{\partial\ln T}=\alpha_1
+\end{equation}
+The momentum equation now reads:
+\begin{align}
+     0 &= \left(\rho c^2+\frac{5}{2}P_i+\frac{f}{f-1}P_e\right)\left(\frac{GM}{c^2r^2\zeta^2}+\frac{\gamma^2v}{c^2}\frac{dv}{dr}\right) \nonumber\\
+     & + \frac{P_i}{T}\frac{dT}{dr}+\frac{P_i}{\rho}\frac{d\rho}{dr} + P_\text{e}\left((\alpha_1+\alpha_2f)\frac{d\ln\rho}{dr}+\alpha_1\frac{d\ln T}{dr}\right) \nonumber\\
+     & - \frac{1}{c\Psi}\rho\kappa F  \label{eq:unsolved_momentum}
+\end{align}
+The temperature derivative terms can be replaced by Eq.~\eqref{eq:dTdr_initial}, and by deriving the conservation of mass equation \eqref{eq:Mdot} we can write:
+\begin{equation}\label{eq:mass_conservation_derivative}
+    \frac{d\ln\rho}{dr}=-\frac{2}{r}-\frac{d\ln u}{dr}-\frac{d\ln\Psi}{dr}
+\end{equation}
+
+Then, $dv/dr$ can be solved for in Eq.~\eqref{eq:unsolved_momentum}, and plugged back in to Eq.~\eqref{eq:mass_conservation_derivative} to obtain $d\rho/dr$. After all of this work, the final equations of structure can be compactly written as:
+
+\begin{align}
+    &\frac{d\ln u}{d\ln r}=\frac{(GM/r\zeta^2)\left(\Ae-\Be/c^2\right)-2\Be-\Ce}{\gamma^2(\Be-v^2\Ae)}\label{eq:dvdr}\\
+    &\frac{d\ln\rho}{d\ln r}=\frac{\left(2v^2-GM/\Psi^2r\right)\Ae+\Ce}{\Be-v^2\Ae} \label{eq:drhodr}\\
+    &\frac{d\ln T}{d\ln r}=-T^*-\frac{GM}{c^2\zeta^2r}-\frac{\gamma^2v^2}{c^2}\frac{d\ln u}{d\ln r}\label{eq:dTdr}
+\end{align}
+where:
+\begin{align}
+    \label{eq:AeBeCe_constants}
+    &T^*=\frac{3\kappa\rho rF}{4acT^4\Psi}=\frac{1}{\Psi}\frac{L}{\Ledd}\frac{\kappa}{\kappa_0}\frac{GM}{r}\frac{3\rho}{4\rho_\text{R}}\nonumber\\
+    &\Ae=1+\frac{3}{2}\frac{P_\text{i}}{\rho c^2}+\frac{P_\text{e}}{\rho c^2}\left(\frac{f}{f-1}-\alpha_1\right) \nonumber\\
+    &\Be=\frac{P_\text{i}}{\rho}+\frac{P_\text{e}}{\rho}(\alpha_1+\alpha_2f) \nonumber \\
+    &\Ce=\frac{1}{\Psi}\frac{L}{\Ledd}\frac{\kappa}{\kappa_0}\frac{GM}{4r}\left(\frac{4-3\beta_\text{i}-(4-\alpha_1)\beta_\text{e}}{1-\beta_\text{i}-\beta_\text{e}}\right)
+\end{align}
+
+This notation was chosen for a very specific reason. It is of interest to consider the non-degenerate limit of the gas, where the corrections applied to the electron pressure and internal energy are negligible, and the gas as a whole can be treated as a whole. Going back to Eq.~\eqref{eq:pressure_params}, this limit can be written as:
+\begin{gather}
+    f\rightarrow \frac{5}{3} \qquad \alpha_1\rightarrow 1 \qquad \alpha_2\rightarrow 0 \qquad P_g\rightarrow\frac{kT\rho}{\mu m_H} 
+\end{gather}
+where $\mu$ is the mean molecular weight of the gas as a whole. In this case, we write the $A$,$B$ and $C$ parameters without the "e" subscript:
+\begin{align}
+    \label{eq:ABC_constants}
+    &A=1+\frac{3}{2}\frac{c_s^2}{c^2} \nonumber\\
+    &B=c_s^2 \nonumber \\
+    &C=\frac{1}{\Psi}\frac{L}{\Ledd}\frac{\kappa}{\kappa_0}\frac{GM}{4r}\left(\frac{4-3\beta}{1-\beta}\right)
+\end{align}
+where $\beta=\beta_i+\beta_\text{e}$ and $c_s$ is the sound speed, given by:
+\begin{equation}\label{eq:cs}
+    c_s=(P_g/\rho)^{1/2}
+\end{equation}
+
+In the non-degenerate limit, the pressure is given by the ideal gas formula and the sound speed is a function of temperature only. With these parameters, Eq.~\eqref{eq:dvdr}-\eqref{eq:dTdr} are equivalent to those used in \citet{Paczynski1986b}, who once again calculated stationary relativistic wind solutions, but with a pure ideal gas equation of state. This demonstrates that our equations are simply an extension of the ones shown in this important paper. At the high densities near the surface of the star and at the base of the winds, the degenerate electron corrections that we have included should help make our equations more physically accurate.\\
+
+Lastly, we note that the procedure of finding solutions to the equations of structure only needs to involve numerical integration of two of the three equations of structure. Indeed, at any point $r$, if two variables among ($v$,$T$,$\rho$,$L$) are known, the other two can be found the equations of conservation of mass (\ref{eq:Mdot}) and energy (\ref{eq:Edot}). This of course implies that $\Mdot$ and $\Edot$ must have been set previously and are free parameters of the solution. The third equation of structure could also be integrated simultaneously, but it would be redundant and increase computing time.
+
+
+\biblio
+\end{document}
