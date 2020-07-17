@@ -1,0 +1,43 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{Analytical Newtonian envelopes}\label{appendix_newtonian}
+\citet{Paczynski1986a} demonstrate a simple calculation for the most extended envelope in Newtonian gravity, one for which the luminosity ratio $\Gamma\equiv L/L_\text{Edd}=1$. Here we extend this calculation to the general case $\Gamma\leq 1$.
+
+With no general relativistic corrections, the hydrostatic balance and photon diffusion equations are simply written as
+\begin{align}
+	&\frac{dP}{dr}=-\frac{GM\rho}{r^2}\\
+	&\frac{dP_R}{dr}=-\frac{\rho\kappa L}{4\pi r^2c}\,,\label{eq:dPR_dr}
+\end{align}
+where $P_R=aT^4/3$ is the radiation pressure. This leads to
+\begin{equation}\label{eq:dPrdP}
+	\frac{dP_R}{dP}=\frac{L}{L_\text{cr}}=\Gamma\frac{\kappa}{\kappa_0}=\Gamma\left[1+\left(\frac{T}{T_0}\right)^\alpha\right]^{-1}\,,
+\end{equation}
+where $T_0=4.5\times10^8$ K and $\alpha=0.86$ are from the opacity formula Eq.~\eqref{eq:kappa}. We may re-write Eq.~\eqref{eq:dPrdP} as 
+\begin{equation}
+	dP=\frac{1}{\Gamma}\frac{4a}{3}\left[1+\left(\frac{T}{T_0}\right)^\alpha\right]T^3dT
+\end{equation}
+which we integrate from the photosphere $r_\text{ph}$ where we assume $T\approx 0$ and thus $P\approx 0$, giving the general expression
+\begin{equation}
+	P(T) = \frac{1}{\Gamma}\frac{aT^4}{3}\left[1+\frac{4}{4+\alpha}\left(\frac{T}{T_0}\right)^\alpha\right]\,.
+\end{equation}
+This also leads to an expression for the density, since $P_g=P-P_R=kT\rho/\mu m_p$, such that
+\begin{equation}
+	\rho(T)=\frac{1}{\Gamma}\frac{\mu m_p}{k}\frac{aT^3}{3}\left[1-\Gamma+\frac{4}{4+\alpha}\left(\frac{T}{T_0}\right)^\alpha\right]
+\end{equation}
+Putting this back into Eq.~\eqref{eq:dPR_dr}, we obtain a differential equation for $T$,
+\begin{equation}
+	\left[1+\left(\frac{T}{T_0}\right)^\alpha\right]\left[1-\Gamma+\frac{4}{4+\alpha}\left(\frac{T}{T_0}\right)^\alpha\right]^{-1}dT=-\frac{1}{4}\frac{\mu m_p}{k}\frac{GM}{r^2}dr \,.
+\end{equation}
+This can be integrated from the photosphere. The $\Gamma=1$ case is straightforward and leads to the expression in \citet{Paczynski1986a},
+\begin{equation}
+	\frac{GM}{r}\frac{\mu m_p}{kT}\frac{1}{4+\alpha}\left(1-\frac{r}{r_\text{ph}}\right)=1+\frac{1}{1-\alpha}\left(\frac{T_0}{T}\right)^\alpha \,.
+\end{equation}
+If $\Gamma<1$, we instead have 
+\begin{align}
+	&\frac{GM}{r}\frac{\mu m_p}{kT}\frac{1}{4+\alpha}\left(1-\frac{r}{r_\text{ph}}\right)\nonumber\\
+	&=1-\left(1-\frac{4}{(4+\alpha)(1-\Gamma)}\right){}_2F_1\left(1,\frac{1}{\alpha};1+\frac{1}{\alpha};\frac{-4(T/T_0)^\alpha}{(4+\alpha)(1-\Gamma)}\right)\,,
+\end{align}
+where ${}_2F_1$ is the hypergeometric function.  All that is required to find $r_\text{ph}$ for a given $\Gamma$ is to have a known pair $(r,T)$ somewhere in the envelope. For example, \citet{Paczynski1986a} assumed a constant $T=2\times10^9$ K at $r=R$. For consistency, we use our boundary condition $P=gy_b=10^8g$ at $r=R$, which we can easily solve for $T$ since we have $\rho=\rho(T)$. This is how we computed the envelope models shown in Fig.~\ref{fig:env_touchdown}.
+
+\biblio
+\end{document}

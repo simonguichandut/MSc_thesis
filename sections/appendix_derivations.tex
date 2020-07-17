@@ -1,0 +1,323 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{Additional derivations}\label{appendix_derivations}
+In Chapter \ref{chapter2}, we presented the general approach to deriving equations of radiation hydrodynamics under the specific set of approximations relevant to this work. However, we left out most of the algebraic calculations for brevity. We write them down in this appendix for future reference, since many of these derivations are non-trivial. What follows is a combination and extended explanation of derivations done in these four papers: \citet{Park1993}, \citet{Park2006}, \citet{Thorne1981}, \citet{Flammang1982}. The notation for general relativity largely follows \citet{Carroll2004}.
+
+
+\section*{GR essentials}
+We use the Schwarzschild metric,
+\begin{equation}
+    ds^2=g_{\mu\nu}dx^\mu dx^\nu=-\zeta^2c^2 dt^2+\zeta^{-2}dr^2 +r^2(d\theta^2+\sin^2\theta d\phi^2)\,,
+\end{equation}
+to describe the space-time $x^\mu=(ct,r,\theta,\phi)$ around a spherical and non-rotating central object. We define the neutron star mass parameter
+\begin{equation}
+    m\equiv GM/c^2
+\end{equation}
+to simplify the notation. The curvature parameter is $\zeta=(1-2m/r)^{1/2}$, which is equivalent to Eq.~\eqref{eq:zeta}.
+The metric $g_{\mu\nu}$ and its inverse $g^{\mu\nu}$ can be used to lower and raise indices. For example, $v^\mu=g^{\mu\alpha}v_\alpha$ contains only one term since the metric has no off-diagonal terms (we use the usual Einstein summation convention where repeated top and bottom indices are summed over).
+
+The four-velocity, defined as $U^\mu=dx^\mu/d\tau$, where $\tau$ is the proper time, has the normalization property $U_\mu U^\mu=-c^2$.   For purely radial motion ($U^\theta=U^\phi=0$), we have:
+\begin{align}
+    -c^2&=U_tU^t+U_rU^r\nonumber\\
+    &=g_{t\alpha}U^\alpha U^t+g_{r\alpha}U^\alpha U^r\nonumber\\
+    &=-\zeta^2(U^t)^2+\zeta^{-2}(U^r)^2\nonumber\\
+    \Rightarrow U^t&=\sqrt{c^2\zeta^{-2}+\zeta^{-4}(U^r)^2}\nonumber\\
+    \Rightarrow U_t&=g_{t\alpha}U^\alpha=-\sqrt{c^2\zeta^2+(U^r)^2}
+\end{align}
+We kept the positive root for $U^t$ so that particles move forward in time ($dt/d\tau>0)$.  The energy parameter of Eq.\ref{eq:Psi} is defined as $\Psi\equiv -U_t/c=\sqrt{\zeta^2+(U^r/c)^2}$.
+
+The non-zero Christoffel symbols of the Schwarzschild metric are: 
+\begin{center}
+    \begin{tabular}{lll}
+        $\chris{r}{t}{t}=m\zeta^2r^{-2}$ & $\qquad\chris{r}{r}{r}=\-m\zeta^{\-2}r^{\-2}\qquad$ & $\chris{t}{t}{r}=m\zeta^{\-2}r^{\-2}$  \\
+        \\
+        $\chris{\theta}{\theta}{r}=r^{\-1}$ & $\qquad\chris{\phi}{\phi}{r}=r^{\-1}\qquad$ & $\chris{\phi}{\phi}{\theta}=\cot\theta$ \\
+        \\
+        $\chris{r}{\theta}{\theta}=\-r\zeta^2$ & $\qquad\chris{r}{\phi}{\phi}=\-r\zeta^2\sin^2\theta\qquad$ & $\chris{\theta}{\phi}{\phi}=\-\sin\theta\cos\theta$  \\
+    \end{tabular}
+\end{center}
+
+The usual symbols "," and ";" are used for regular and covariant derivatives respectively.  The covariant derivative of an arbitrary tensor is given by 
+\begin{align*}
+T^{\mu_1...\mu_k}{}_{\nu_1...\nu_l\; ;\alpha}&=\partial_\alpha T^{\mu_1...\mu_k}{}_{\nu_1...\nu_l}\\
+&+\Gamma^{\mu_1}_{\alpha \sigma}T^{\sigma...\mu_k}{}_{\nu_1...\nu_l}+...+\Gamma^{\mu_k}_{\alpha \sigma}T^{\mu_1...\sigma}{}_{\nu_1...\nu_l}\\
+&-\Gamma^{\sigma}_{\alpha \nu_1}T^{\mu_1...\mu_k}{}_{\sigma...\nu_l}-...-\Gamma^{\sigma}_{\alpha \nu_k}T^{\mu_1...\mu_k}{}_{\nu_1...\sigma}\,,
+\end{align*}
+where $\partial_\alpha\equiv\partial/\partial x^\alpha$.
+
+There are two fundamental principles in this tensor formalism that need to be respected. First, the continuity equation represents the conservation of particle proper number density (per unit volume), and is given by $(nU^\mu)_{;\mu}=0$.   Second, the divergence of the total stress tensor of the system $T^{\mu\nu}_\text{tot}$ has to be zero ($T^{\mu\nu}_\text{tot}{}_{;\nu}=0$) so that there can be a solution to the Einstein field equations.  
+
+\section*{Fixed and comoving frames}
+We now give a more extensive explanation of the two frames introduced to describe the fluid and radiation quantities in Section \ref{sec:GR}.
+
+For the \textbf{fixed frame}, we construct an orthonormal basis $\bm{e}_{\hat{\mu}}=\partial/\partial x^{\hat{\mu}}$.  This frame is locally inertial, so we can use the flat (Minkowski) metric $\eta_{\mu\nu}$ to manipulate vectors.  In terms of the coordinate basis $\partial/\partial x^{\mu}$,
+\begin{equation}\label{eq::fixed_to_coord}
+    \frac{\partial}{\partial \hat{t}}=\frac{1}{\zeta}\frac{\partial}{\partial t} 
+    \quad,\quad
+    \frac{\partial}{\partial \hat{r}}=\zeta\frac{\partial}{\partial r} \quad,\quad
+    \frac{\partial}{\partial \hat{\theta}}=\frac{1}{r}\frac{\partial}{\partial \theta} \quad,\quad
+    \frac{\partial}{\partial \hat{\phi}}=\frac{1}{r\sin\theta}\frac{\partial}{\partial\phi}\,.
+\end{equation}
+It is easy to verify that the base is indeed orthornormal, i.e. $e_{\hat{\mu}}\cdot e^{\hat{\nu}}=\delta_{\hat{\mu}}^{\hat{\nu}}\;$\footnote{Use $ e^{\hat{j}}=\eta^{\hat{j}\hat{k}}e_{\hat{k}}$ and $\partial_i\cdot\partial_j=g_{jk}\partial_i\cdot\partial^k=g_{jk}\delta^k_i$}, the kronecker delta.  An observer in this frame sees matter moving with proper velocity $\bm{v}$, which in one spatial dimension is given by
+\begin{equation}
+    v^r=\frac{U^{\hat{r}}}{U^{\hat{t}}}=\frac{U_\alpha e_{\hat{r}}^\alpha}{\-U_\alpha e_{\hat{t}}^\alpha}=\frac{U_r\zeta}{\-U_t\zeta^{\-1}}=\frac{U^r\zeta^{\-1}}{\Psi\zeta^{\-1}}=U^r\Psi^{\-1} \,.
+\end{equation}
+The fluid velocity is $u\equiv v^r=U^r/\Psi$. Putting this back into the definition for the energy parameter, $\Psi=\sqrt{\zeta^2+(u\Psi/c)^2}$ gives
+\begin{equation}
+    \Psi=\zeta\left(1-\frac{u^2}{c^2}\right)^{-1/2}=\zeta\gamma\,,
+\end{equation}
+where $\gamma$ is the Lorentz factor.
+
+The \textbf{comoving frame} moves with velocity $u$ with respect to the fixed frame.  A Lorentz transformation  $\partial/\partial x_\text{co}^{\hat{\mu}}=\Lambda^{\hat{\alpha}}_{\hat{\mu}}\;\partial/\partial x^{\hat{\alpha}}$ is used to link the two.  The 1-D picture is straightforward as we can use the classic Lorentz transformation from special relativity, where
+\begin{equation}
+    c\hat{t}=\gamma\left(c\hat{t}_\text{co}+u\hat{r}_\text{co}/c\right)
+    \quad,\quad
+    \hat{r}=\gamma\left(\hat{r}_\text{co}+u\hat{t}_\text{co}\right)\,,
+\end{equation}
+leading to
+\begin{equation}
+    \Lambda^{\hat{\alpha}}_{\hat{\mu}}=\begin{bmatrix}\gamma&\gamma u/c\\\gamma u/c&\gamma\end{bmatrix}\label{eq::lorentz_transfo}\,.
+\end{equation}
+Using \eqref{eq::fixed_to_coord} and \eqref{eq::lorentz_transfo}, we can write the comoving derivatives in terms of the coordinates:
+\begin{align}\label{eq::co_to_coord}
+    \frac{\partial}{\partial (c\hat{t}_\text{co})}=\Lambda^{\hat{\alpha}}_{\hat{t}}\frac{\partial}{\partial x^{\hat{\alpha}}} &= \Lambda^{\hat{t}}_{\hat{t}}\frac{\partial}{\partial (c\hat{t})} + \Lambda^{\hat{r}}_{\hat{t}}\frac{\partial}{\partial \hat{r}}\nonumber
+    =\frac{\gamma}{\zeta}\frac{\partial}{\partial (ct)}+\frac{u\Psi}{c}\frac{\partial}{\partial r}\,,\nonumber\\\\
+    \frac{\partial}{\partial \hat{r}_\text{co}}=\Lambda^{\hat{\alpha}}_{\hat{r}}\frac{\partial}{\partial x^{\hat{\alpha}}} &= \Lambda^{\hat{t}}_{\hat{r}}\frac{\partial}{\partial (c\hat{t})} + \Lambda^{\hat{r}}_{\hat{r}}\frac{\partial}{\partial \hat{r}}\nonumber
+    =\frac{u\gamma}{c\zeta}\frac{\partial}{\partial (ct)}+\Psi\frac{\partial}{\partial r} \,.
+\end{align}
+There is no angular Lorentz boost, so $\partial/\partial\hat{\theta}_\text{co}=\partial/\partial\hat{\theta}$ and $\partial/\partial\hat{\phi}_\text{co}=\partial/\partial\hat{\phi}$.  Obtaining the inverse transformations is just a matter of inverting $\Lambda^{\hat{\alpha}}_{\hat{\mu}}$.
+
+% so that the direct \& inverse transformations are:
+% \begin{equation}
+% \Lambda^{\hat{\alpha}}_{\hat{\beta}}=\begin{bmatrix}\gamma&\frac{\gamma u}{c^2}\\\gamma \frac{\gamma u}{c^2}&\gamma\end{bmatrix} \qquad\qquad \Lambda^{\hat{\alpha}}_{\hat{\beta}}=\begin{bmatrix}\gamma&\frac{\gamma u}{c^2}\\\gamma \frac{\gamma u}{c^2}&\gamma\end{bmatrix}
+% \end{equation}
+
+\section*{Matter and Radiation stress-energy tensors}
+We showed in Section \ref{sec:tensors} the origin for the radiation stress-tensors,
+\begin{align}
+&\bm{\bar{R}}=\begin{bmatrix}\bar{E} & \bar{F}/c &0&0\\\bar{F}/c &\bar{P} &0&0\\0&0&(\bar{E}-\bar{P})/2&0\\0&0&0&(\bar{E}-\bar{P})/2\end{bmatrix}\,\\
+&\bm{R}_\text{co}=\begin{bmatrix}U_R & F/c&0&0\\F/c&U_R/3&0&0\\0&0&U_R/3&0\\0&0&0&U_R/3\end{bmatrix}\,.
+\end{align}
+The two tensors are related to each other by the previously defined Lorentz boost $\Lambda^{\hat{\alpha}}_{\hat{\mu}}$. Indeed, the transformation rule for tensors is 
+\begin{equation}
+      \bar{R}^{\hat{\alpha}\hat{\beta}}=\frac{\partial x^{\hat{\alpha}}}{\partial x^{\hat{\mu}}_\text{co}}\frac{\partial x^{\hat{\beta}}}{\partial x^{\hat{\nu}}_\text{co}}R^{\hat{\mu}\hat{\nu}}_\text{co}=\Lambda^{\hat{\alpha}}_{\hat{\mu}}\Lambda^{\hat{\beta}}_{\hat{\nu}}R^{\hat{\mu}\hat{\nu}}_\text{co}
+\end{equation}
+In the four-dimensional picture, the Lorentz matrix is completed by 2x2 identity matrix in the $(\theta,\phi)$ block, i.e. $\Lambda^{\hat{\theta}}_{\hat{\theta}}=\Lambda^{\hat{\phi}}_{\hat{\phi}}=1$, $\Lambda^{\hat{\theta}}_{\hat{\phi}}=\Lambda^{\hat{\phi}}_{\hat{\theta}}=0$.  Using this, we can write the components of energy, flux and pressure in the fixed frame as a function of the comoving quantities:
+\begingroup
+\allowdisplaybreaks
+\begin{align}
+    \bar{E}=\bar{R}^{\hat{t}\hat{t}}&=\Lambda^{\hat{t}}_{\hat{\mu}}\Lambda^{\hat{t}}_{\hat{\nu}}R^{\hat{\mu}\hat{\nu}}_\text{co}\nonumber\\
+    &=\Lambda^{\hat{t}}_{\hat{t}}(\Lambda^{\hat{t}}_{\hat{t}}R^{\hat{t}\hat{t}}_\text{co}+\Lambda^{\hat{t}}_{\hat{r}}R^{\hat{t}\hat{r}}_\text{co})+\Lambda^{\hat{t}}_{\hat{r}}(\Lambda^{\hat{t}}_{\hat{t}}R^{\hat{r}\hat{t}}_\text{co}+\Lambda^{\hat{t}}_{\hat{r}}R^{\hat{r}\hat{r}}_\text{co})\nonumber\\
+    &=(\Lambda^{\hat{t}}_{\hat{t}})^2R^{\hat{t}\hat{t}}_\text{co}+2\Lambda^{\hat{t}}_{\hat{t}}\Lambda^{\hat{t}}_{\hat{r}}R^{\hat{t}\hat{r}}_\text{co}+(\Lambda^{\hat{t}}_{\hat{r}})^2R^{\hat{r}\hat{r}}_\text{co}\nonumber\\
+    &=\gamma^2\left[\left(1+\frac{1}{3}\frac{u^2}{c^2}\right)U_R + \frac{2u}{c^2}F\right]\,,
+\\
+    \bar{F}=c\bar{R}^{\hat{t}\hat{r}}&=\gamma^2\left[\frac{4}{3}uU_R + \left(1+\frac{u^2}{c^2}\right)F\right]\,,\\
+    \bar{P}=\bar{R}^{\hat{r}\hat{r}}&=\gamma^2\left[\left(\frac{u^2}{c^2}+\frac{1}{3}\right)U_R + \frac{2u}{c^2}F\right]\,.
+\end{align}
+\endgroup
+
+To find the radiation tensor in the coordinate basis, we can use the transformations given by Eq. \eqref{eq::fixed_to_coord} in
+\begin{equation}
+    R^{\mu\nu}=\frac{\partial x^\mu}{\partial x^{\hat{\alpha}}}\frac{\partial x^\nu}{\partial x^{\hat{\beta}}}\bar{R}^{\hat{\alpha}\hat{\beta}}\,.
+\end{equation}
+Since the transformation has no off-diagonal terms, we easily get
+\begin{equation}
+R^{\mu\nu}=\begin{bmatrix}\zeta^{\-2}\bar{E}&\bar{F}/c&0&0\\\bar{F}/c&\zeta^2\bar{P}&0&0\\0&0&r^{\-2}(\bar{E}-\bar{P})/2\\0&0&0&(r\sin\theta)^{\-2}(\bar{E}-\bar{P})/2\end{bmatrix}\,.
+\end{equation}
+
+We also introduced the radiation four-force density tensor $G^\alpha$, and specified it in terms of the local and cooling functions and the opacity in the comoving frame (Eq.~\ref{eq:G_co^t}-\ref{eq:G_co^i}). We will need its components in the coordinate frame when deriving the hydrodynamics and radiation equations. With
+\begin{equation}
+    G^\alpha=\frac{\partial x^\alpha}{\partial x^{\hat{\beta}.}_\text{co}}G^{\hat{\beta}}_\text{co}\,
+\end{equation}
+and the transformation given by Eq.~\eqref{eq::co_to_coord}, we obtain
+\begin{align}
+    G^t&=\frac{\gamma}{\zeta}\left(G^{\hat{t}}_\text{co}+\frac{u}{c}G^{\hat{r}}_\text{co}\right)\,,\\
+    G^r&=\Psi\left(\frac{u}{c}G^{\hat{t}}_\text{co}+G^{\hat{r}}_\text{co}\right)\,.
+\end{align}
+We have made the assumption of a purely radial flux here, i.e. the angular components of $F^i_\text{co}$, and as a result those of $G^i_\text{co}$ and $G^i$, are all zero.
+
+\section*{Continuity equation}
+The general relativistic mass conservation equation comes from the covariant continuity equation.  Considering spherical symmetry ($U^\theta=U^\phi=0$),
+\begin{align}
+    0&=(nU^\mu)_{;\mu}\nonumber\\
+    &=\partial_t(nU^t)+\partial_r(n U^r)+n(\Gamma^t_{t\alpha}U^\alpha+\Gamma^r_{r\alpha}U^\alpha+\Gamma^\theta_{\theta\alpha}U^\alpha+\Gamma^\phi_{\phi\alpha}U^\alpha)\nonumber\\
+    &=\partial_t(n\zeta^{\-2}\Psi c)+\partial_r(n u\Psi)+\frac{2}{r}n u\Psi\nonumber\\
+    \Rightarrow\; 0&=\frac{1}{\zeta^2}\Partial{t}{n \Psi}+\frac{1}{r^2}\Partial{r}{r^2n u\Psi}
+\end{align}
+We used $U^t=g^{t\alpha}U_\alpha=\zeta^{-2}\Psi c$, $U^r=u\Psi$ and $\partial_t=\partial/\partial(ct)$. This is the same as Eq.~\eqref{eq:masscons}, in units of number density per unit time [cm$^{\-3}$ s$^{\-1}$]. 
+
+%Note that we described the conservation of the number density $n$ instead of the mass density $\rho$ to avoid confusion with common GR notation, in which $\rho$ refers to the total energy density (rest mass plus internal).  This is because mass and energy are analogous in relativity. Technically, the continuity equation would be valid if we replaced $n$ with $\rho$, the rest mass only.  Most literature uses $n$ however.
+
+\section*{Momentum equation}
+Our general relativistic formulation of the Euler equation that describes the balance of forces and momenta in the system, including radiation, comes from $T^{\mu\nu}{}_{;\nu}=G^\mu$, to which we apply the projection operator
+\begin{equation}
+    P_\alpha{}^\beta=\delta_\alpha^\beta + \frac{U_\alpha U^\beta}{c^2}\,,
+\end{equation}
+so that the equation to write down is $P_\alpha{}^\beta T^{\alpha\lambda}{}_{;\lambda}=P_\alpha{}^\beta G^\alpha=G^\beta+U_\alpha U^\beta G^\alpha/c^2$.  Before expanding, let us note three important identities:
+\begin{enumerate}
+    \item $g^{\mu\nu}{}_{;\lambda}=g_{\mu\nu}{}_{;\lambda}=0$, by definition of the Christoffel symbols.
+    
+    \item $\delta_\mu^\nu{}_{;\lambda}=(g_{\mu\alpha}g^{\alpha\nu})_{;\lambda}=0$. This allows us to use the kronecker delta in this useful way:
+    $$\delta_\mu^\nu w^\mu{}_{;\lambda}=(\delta_\mu^\nu w^\mu)_{;\lambda}-\delta_\mu^\nu{}_{;\lambda}w^\mu=w^\nu{}_{;\lambda}$$
+    
+    \item $U_\mu U^\mu{}_{;\lambda}=0$. We can prove this using the property $U_\mu U^\mu=-c^2$:
+    \begin{align*}
+    0&=(U_\mu U^\mu)_{;\lambda}\\
+    &=U_{\mu;\lambda}U^\mu+U_\mu U^\mu{}_{;\lambda}\\
+    &=(g_{\mu\alpha}U^\alpha)_{;\lambda}g^{\mu\beta}U_{\beta}+U_\mu U^\mu{}_{;\lambda}\\
+    &=\delta_\alpha^\beta U^\alpha{}_{;\lambda}U_\beta+U_\mu U^\mu{}_{;\lambda} \qquad\text{using the first identity}\\
+    &=U^\beta{}_{;\lambda}U_\beta+U_\mu U^\mu{}_{;\lambda}\qquad\text{using the second identity}\\
+    &=2U_\mu U^\mu{}_{;\lambda}\\
+    \Rightarrow&\; U_\mu U^\mu{}_{;\lambda}=\frac{1}{2}(U_\mu U^\mu)_{;\lambda}=0 \quad\blacksquare
+\end{align*}
+\end{enumerate}
+With these simplifications, the following derivation is straightforward:
+\begin{align}
+    P_\alpha{}^\beta T^{\alpha\lambda}{}_{;\lambda}=&c^{-2}\left[\delta_\alpha^\beta+c^{-2}U_\alpha U^\beta\right]\nonumber\\
+    &\qquad\left[\omega_{g,\lambda}U^\alpha U^\lambda+\omega_gU^\alpha{}_{;\lambda}U^\lambda+\omega_gU^\alpha U^\lambda{}_{;\lambda}+c^2P_{g,\lambda}g^{\alpha\lambda}\right]\nonumber\\\nonumber\\
+    =&\;\;c^{-2}(\omega_{g,\lambda}U^\beta U^\lambda+\omega_gU^\beta{}_{;\lambda}U^\lambda+\omega_gU^\beta U^\lambda{}_{;\lambda})+P_{g,\lambda}g^{\beta\lambda}\nonumber\\
+    &-c^{-2}(\omega_{g,\lambda}U^\beta U^\lambda+\omega_g U^\beta U^\lambda{}_{;\lambda})+c^{-2}P_{g,\lambda}U^\lambda U^\beta\nonumber\\
+    =&\;\;c^{-2}\omega_g U^\beta{}_{;\lambda}U^\lambda+(g^{\beta\lambda}+c^{-2}U^\lambda U^\beta)P_{g,\lambda}
+\end{align}
+Multiplying both sides by $c^2$, the Euler equation is then 
+\begin{equation}
+    \omega_g U^\beta{}_{;\lambda}U^\lambda+(c^2g^{\beta\lambda}+U^\lambda U^\beta)P_{g,\lambda}=c^2G^\beta+U_\alpha U^\beta G^\alpha\,.
+\end{equation}
+The radial equation is obtained by fixing $\beta=r$, that is
+\begin{align}
+    \omega_g U^r{}_{;\lambda}U^\lambda+(c^2g^{r\lambda}+U^\lambda U^r)P_{g,\lambda}&=c^2G^r+U_\alpha U^r G^\alpha\nonumber\\
+    &=G^r(c^2+\zeta^{-2}(U^r)^2)-c\Psi U^rG^t\,.
+\end{align}
+Expanding the left-hand side:
+\begin{align*}
+    &\omega_g(\partial_t U^r+\chris{r}{t}{\sigma}U^\sigma)U^t +
+    \omega_g(\partial_r U^r+\chris{r}{r}{\sigma}U^\sigma)U^r \\
+    &\qquad+ U^r U^t\partial_t P_g+(c^2cg^{rr}+(U^r)^2)\partial_r P_g\\
+    =&\;\omega_g(U^t\partial_t U^r +U^r\partial_r U^r +mr^{\-2}(\zeta^2 (U^t)^2-\zeta^{\-2}(U^r)^2))\\
+    &\qquad+ U^r U^t\partial_t P_g+c^2\Psi^2\partial_r P_g\\
+    =&\;\omega_g\left(\frac{\Psi}{\zeta^2}\Partial{t}{u\Psi}+u\Psi\Partial{r}{u\Psi}+mr^{\-2}\left(c^2\gamma^2-u^2\gamma^2\right)\right)\\
+    &\qquad+ \frac{u\Psi^2}{\zeta^2}\frac{\partial P_g}{\partial t}+c^2\Psi^2\frac{\partial P_g}{\partial r}\\
+    =&\;\omega_g\left(\frac{\Psi}{\zeta^2}\Partial{t}{u\Psi}+\frac{1}{2}\Partial{r}{u\Psi}^2+\frac{mc^2}{r^2}\right)+u\gamma^2\frac{\partial P_g}{\partial t}+c^2\Psi^2\frac{\partial P_g}{\partial r}
+\end{align*}
+Expanding the right-hand side:
+\begin{align*}
+    G^r(c^2+\zeta^{-2}(U^r)^2)-c\Psi U^rG^t
+    &=\;\Psi\left(\frac{u}{c}G^{\hat{t}}_\text{co}+G^{\hat{r}}_\text{co}\right)\left(c^2+u^2\gamma^2\right)\\
+    &\quad-uc\Psi^2\frac{\gamma}{\zeta}\left(G^{\hat{t}}_\text{co}+\frac{u}{c}G^{\hat{r}}_\text{co}\right)\\
+    & =c^2\Psi G^{\hat{r}}_\text{co}=c\Psi\rho\kappa F
+\end{align*}
+In the last line, we used our definitions $\kappa\equiv\bar{\chi}_\text{co}/\rho$ and $F\equiv F^r_\text{co}$. Dividing both sides by $\omega_g$, the momentum equation (Eq.~\ref{eq:momcons}),
+\begin{equation}
+\frac{\Psi}{\zeta^2}\Partial{t}{u \Psi}+\frac{1}{2}\Partial{r}{u\Psi}^2+\frac{GM}{r^2} +\frac{u\gamma^2}{\omega_g}\frac{\partial P_g}{\partial t} +\frac{c^2\Psi^2}{\omega_g}\frac{\partial P_g}{\partial r} = \frac{\Psi c}{\omega_g}\rho\kappa F\,,
+\end{equation}
+has units of acceleration [cm s$^{\-2}$].
+
+\section*{Energy equation}
+For the energy equation, we project using the velocity, $U_\alpha T^{\alpha\beta}{}_{;\beta}=U_\alpha G^\alpha$.\\
+Left-hand side:
+\begin{align*}
+    U_\alpha T^{\alpha\beta}{}_{;\beta}&=
+    c^{-2}U_\alpha\left(\omega_{g,\beta}U^\alpha U^\beta+\omega_gU^\alpha{}_{;\beta}U^\beta+\omega_gU^\alpha U^\beta{}_{;\beta}+c^2P_{g,\beta}g^{\alpha\beta}\right)\\
+    &=-\omega_{g,\beta}U^\beta-\omega_gU^\beta{}_{;\beta}+P_{g,\beta}U^\beta\\
+    &=-(\omega_g U^\beta)_{;\beta}+P_{g,\beta}U^\beta\\
+    &=-\left(\frac{\omega_g}{n} n U^\beta\right)_{;\beta}+P_{g,\beta}U^\beta\\
+    &=-\left(\frac{\omega_g}{n} \right)_{,\beta}n U^\beta+P_{g,\beta}U^\beta \quad \text{(using the continuity equation)}\\
+    &=-\frac{n \Psi}{\zeta^2}\Partial{t}{\frac{\omega_g}{n}}-n u\Psi\Partial{r}{\frac{\omega_g}{n}}+\frac{\Psi}{\zeta^2}\frac{\partial P_g}{\partial t}+u\Psi\frac{\partial P_g}{\partial r}
+\end{align*}
+Right-hand side:
+\begin{align*}
+    U_\alpha G^\alpha&=-c\Psi G^t+\frac{u\Psi}{\zeta^2}G^r\\
+    &=-c\gamma^2\left(G^{\hat{t}}_\text{co}+\frac{u}{c}G^{\hat{r}}_\text{co}\right)+u\gamma^2\left(\frac{u}{c}G^{\hat{t}}_\text{co}+G^{\hat{r}}_\text{co}\right)=-cG^{\hat{t}}_\text{co}
+\end{align*}
+Multiplying both sides by $-1$ gives the energy equation (Eq.~\ref{eq:enercons}),
+\begin{equation}
+    \frac{n \Psi}{\zeta^2}\Partial{t}{\frac{\omega_g}{n}}+n u\Psi\Partial{r}{\frac{\omega_g}{n}}-\frac{\Psi}{\zeta^2}\frac{\partial P_g}{\partial t}-u\Psi\frac{\partial P_g}{\partial r}=\Lambda_\text{co}-\Gamma_\text{co}\,,
+\end{equation}
+in units of energy density per unit time [erg cm$^{\-3}$ s$^{\-1}$].
+
+We may re-write this equation in more intuitive ways. We replace $n$ by $\rho$ and remove a term in the derivative of $\omega_g$ since $\omega_g/\rho=c^2+(P_g+U_g)/c^2$. Then,
+\begin{equation*}
+    \frac{\Psi}{\zeta^2}\left(\rho\Partial{t}{\frac{\omega_g}{\rho}}-\frac{\partial P_g}{\partial t}\right)=\frac{\Psi}{\zeta^2}\frac{\partial U_g}{\partial t}+\frac{U_g+P_g}{\rho}\left(\frac{\rho}{\zeta^2}\frac{\partial \Psi}{\partial t}+\frac{1}{r^2}\frac{\partial}{\partial r}(r^2\rho u\Psi)\right)\,,
+\end{equation*}
+and
+\begin{equation*}
+    u\Psi\left(\rho\Partial{r}{\frac{\omega_g}{\rho}}-\frac{\partial P_g}{\partial r}\right)=u\Psi\left(\frac{\partial U_g}{\partial r}-\frac{U_g+P_g}{\rho}\frac{\partial \rho}{\partial r}\right)\,,
+\end{equation*}
+so that we end up with
+\begin{equation}
+    \frac{\Psi}{\zeta^2}\frac{\partial U_g}{\partial t}+\frac{U_g+P_g}{\zeta^2}\frac{\partial \Psi}{\partial t}+u\Psi\frac{\partial U_g}{\partial r}+\frac{U_g+P_g}{r^2}\frac{\partial}{\partial r}(r^2u\Psi)=\Lambda_\text{co}-\Gamma_\text{co}
+\end{equation}
+We can also write this in terms of the specific internal energy $\varepsilon_g\equiv U_g/\rho$.  This gives
+\begin{equation}\label{eq:specific_internal_energy}
+    \frac{\Psi}{\zeta^2}\frac{\partial \varepsilon_g}{\partial t}+u\Psi\frac{\partial \varepsilon_g}{\partial r}+\frac{P_g}{\rho\zeta^2}\frac{\partial \Psi}{\partial t}+\frac{P_g}{\rho r^2}\frac{\partial}{\partial r}(r^2u\Psi)=\frac{\Lambda_\text{co}-\Gamma_\text{co}}{\rho}\,.
+\end{equation}
+It could be argued that the $\partial \Psi/\partial t$ term can be ignored.  Then, with only one time derivative, this equation would be very suitable for a hydrodynamics calculation.
+
+\section*{Radiation moment equations}
+The radiation equations are $R^{\alpha\beta}{}_{;\beta}=-G^\alpha$.  The moment equation is $\alpha=t$.\\
+Left-hand side:
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    R^{t\beta}{}_{;\beta}&=\partial_\beta R^{t\beta}+\chris{t}{\beta}{\sigma}R^{\sigma\beta}+\chris{\beta}{\beta}{\sigma}R^{t\sigma}\\
+    &=\partial_\beta R^{t\beta}+(3\chris{t}{t}{r}+\chris{r}{r}{r}+\chris{\theta}{\theta}{r}+\chris{\phi}{\phi}{r})R^{tr}\\
+    &=\partial_t R^{tt}+\partial_r R^{tr}+\left(\frac{2m}{r^2\zeta^2}+\frac{2}{r}\right)R^{tr}\\
+    &=\frac{\partial R^{tt}}{\partial(ct)}+\frac{1}{r^2\zeta^2}\Partial{r}{r^2\zeta^2R^{tr}}\\
+    &=\frac{1}{c\zeta^2}\frac{\partial \bar{E}}{\partial t}+\frac{1}{cr^2\zeta^2}\Partial{r}{r^2\zeta^2\bar{F}}
+\end{align*}
+\endgroup
+%RHS:
+%\begin{align*}
+%    G^t
+%    =\frac{\gamma}{\zeta}\left(G^{\hat{t}}_\text{co}+\frac{u}{c}G^{\hat{r}}_\text{co}\ri%ght)
+%\end{align*}
+Multiplying both sides by $c$ gives the radiation energy balance equation (Eq.~\ref{eq:radenercons}),
+\begin{equation}
+    \frac{1}{\zeta^2}\frac{\partial \bar{E}}{\partial t}+\frac{1}{\zeta^2r^2}\Partial{r}{r^2\zeta^2\bar{F}}=\frac{\gamma}{\zeta}\left(\Lambda_\text{co}-\Gamma_\text{co}-\frac{u}{c}\rho\kappa F\right)
+\end{equation}
+in units of energy density per unit time [erg cm$^{\-3}$ s$^{\-1}$].\\
+
+\noindent The first moment equation is $\alpha=r$.\\
+Left-hand side:
+\begin{align*}
+    R^{r\beta}{}_{;\beta}&=\partial_\beta R^{r\beta}+\chris{r}{\beta}{\sigma}R^{\sigma\beta}+\chris{\beta}{\beta}{\sigma}R^{r\sigma}\\
+    &=\partial_\beta R^{r\beta}+\chris{r}{t}{t}R^{tt}+(2\chris{r}{r}{r}+\chris{t}{t}{r}+\chris{\theta}{
+    \theta}{r}+\chris{\phi}{\phi}{r})R^{rr}+\chris{r}{\theta}{\theta}R^{\theta\theta}+\chris{r}{\phi}{\phi}R^{\phi\phi}\\
+    &=\partial_t R^{rt}+\partial_r R^{rr}+\frac{m}{r^2}\zeta^2 R^{tt}+\left(\frac{2}{r}-\frac{m}{r^2\zeta^2}\right)R^{rr}-r\zeta^2(R^{\theta\theta}+\sin^2\theta R^{\phi\phi})\\
+    &=\frac{1}{c^2}\frac{\partial\bar{F}}{\partial t}+\Partial{r}{\zeta^2\bar{P}}+\frac{m}{r^2}\bar{E}+\left(\frac{2\zeta^2}{r}-\frac{m}{r^2}\right)\bar{P}-\frac{\zeta^2}{r}(\bar{E}-\bar{P})\\
+    &=\frac{1}{c^2}\frac{\partial\bar{F}}{\partial t}+\zeta^2\frac{\partial\bar{P}}{\partial r}+\frac{m}{r^2}(\bar{E}+\bar{P})+\frac{\zeta^2}{r}(3\bar{P}-\bar{E})
+\end{align*}
+Multiplying both sides by $c^2$ gives the radiation force balance equation (Eq.~\ref{eq:radmomcons}),
+\begin{equation}
+    \frac{\partial \bar{F}}{\partial t}+c^2\zeta^2\frac{\partial\bar{P}}{\partial r}+\frac{GM}{r^2}(\bar{E}+\bar{P})+\frac{c^2\zeta^2}{r}(3\bar{P}-\bar{E})=u\Psi(\Lambda_\text{co}-\Gamma_\text{co})-\Psi c\rho\kappa F\,,
+\end{equation}
+in units of energy flux per unit time [erg cm$^{\-2}$ s$^{\-2}$].
+
+
+\section*{Non-relativistic limit}
+Let us now convince the reader that the hydrodynamics equations that we derived from first principles, i.e. $(nU^\mu)_{;\mu}=0$ and $T^{\mu\nu}_{\text{tot};\nu}=0$, converge to familiar textbook equations in the non-relativistic limit. In this limit, we take $\zeta=\gamma=\Psi=1$ and $P_g\ll \rho c^2$.  For familiarity, we restore the $\nabla$ operators for gradients and divergences and $\bm{u}$ and $\bm{F}$ as vectors.  For radiation, there is no frame transformation so that the fixed frame quantities are equal to their comoving frame counterpart ($\bar{E}=U_R$, $\bar{F}=F$, $\bar{P}=U_R /3$, $\Lambda_\text{co}-\Gamma_\text{co}=\Lambda-\Gamma$).  We can also freely replace $n$ with $\rho$ in all of the equations.\\
+
+\noindent The conservation of mass equation trivially becomes
+\begin{equation}
+    \frac{\partial\rho}{\partial t}+\nabla\cdot(\rho \bm{u})=0\,.
+\end{equation}
+
+\noindent For the conservation of momentum, we can easily neglect the $\partial P_g/\partial t$ term since it is smaller than the rest by a factor $c^2$.  With the gravitationnal acceleration $\bm{g}$,
+\begin{equation}
+    \frac{\partial\bm{u}}{\partial t}+(\bm{u}\cdot\nabla)\bm{u}=-\frac{\nabla P_g}{\rho}+\bm{g}+\frac{\kappa\bm{F}}{c}
+\end{equation}
+
+\noindent For the energy equation, we take the one written in terms of the specific internal energy $\varepsilon_g$, Eq.~\eqref{eq:specific_internal_energy}, which straightforwardly becomes
+\begin{equation}
+    \frac{\partial \varepsilon}{\partial t}+\bm{u}\cdot\nabla \varepsilon=-\frac{P_g}{\rho}\;\nabla\cdot\bm{u}+\frac{\Lambda-\Gamma}{\rho}
+\end{equation}
+
+\noindent For the radiation moment equations, we only have to note that $3\bar{P}-\bar{E}=0$ because there is no frame transformation.  We obtain
+\begin{align}
+&\frac{\partial U_R}{\partial t}+\nabla\cdot\bm{F}=\Lambda-\Gamma-\frac{u}{c}\rho\kappa|\bm{F}|\,,\\ &\frac{\partial \bm{F}}{\partial t}+c^2\nabla \left(\frac{U_R}{3}\right)=\bm{u}(\Lambda-\Gamma)-\frac{4U_R}{3}\bm{a}-\rho\kappa c\bm{F}\,.
+\end{align}
+
+
+
+\biblio
+\end{document}

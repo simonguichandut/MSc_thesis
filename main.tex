@@ -1,6 +1,7 @@
-\documentclass[12pt]{article}
+\documentclass[12pt,oneside,onehalfspacing]{book}
 
 \usepackage{natbib}
+
 
 % Language
 \usepackage[utf8]{inputenc}
@@ -16,10 +17,19 @@
 
 % Figures
 \usepackage{float}
+\usepackage{caption}
+
+% Tables
+\usepackage{array}
+\usepackage{makecell}
 
 % Links
 \usepackage{url}
 \usepackage{hyperref}
+
+% Others
+\usepackage[titletoc,page]{appendix}
+\usepackage{setspace}
 
 \usepackage{subfiles}
 
@@ -27,29 +37,67 @@
 \numberwithin{equation}{section} % Equations formatted as sec#.eq#
 \numberwithin{figure}{section}
 
+\newcommand{\Lcr}{L_\text{cr}}
+\newcommand{\Ledd}{L_\text{Edd}}
+\newcommand{\Linf}{L^\infty}
+\newcommand{\Msun}{M_\odot}
+\newcommand{\Nicer}{\textit{NICER}}
+\newcommand{\mach}{\mathcal{M}}
+\newcommand{\ph}{_\text{ph}}
+\newcommand{\Mdot}{\dot{M}}
+\newcommand{\Edot}{\dot{E}}
+\newcommand{\Ae}{A_\text{e}}
+\newcommand{\Be}{B_\text{e}}
+\newcommand{\Ce}{C_\text{e}}
+\newcommand{\chris}[3]{\Gamma^{#1}_{#2#3}} % christoffel symbol : \chris{\alpha}{\beta}{\sigma}
+\newcommand{\Partial}[2]{\frac{\partial}{\partial#1}\left(#2\right)} % del by delx (y) : \Partial{x}{y}
 
+
+\def\-{\raisebox{.75pt}{-}} % shorter minus sign : \-
 
 % How to have a bibliography both when compiling the main file and the subfiles individually : solution found at https://latex.org/forum/viewtopic.php?t=10320
-\def\biblio{\bibliographystyle{plainnat}\bibliography{references,textbook_references}}
+\def\biblio{\bibliographystyle{plainnat}\bibliography{papers,textbooks}}
 \begin{document}
 \def\biblio{}
 
-\tableofcontents
-\newpage
-    
-\subfile{sections/introduction}
-\newpage
-\subfile{sections/chapter2_equations}
-\newpage
-\subfile{sections/chapter3_winds}
-\newpage
-\subfile{sections/chapter4_atmospheres}
-\newpage
-\subfile{sections/chapter5_compare}
+\frontmatter
+\input{titlepage}
+\subfile{sections/acknowledgements}
+\subfile{sections/abstract}
 
-\newpage
+\begingroup
+\pagestyle{plain}
+\tableofcontents
+\begingroup
+\let\clearpage\relax
+\listoffigures
+\listoftables
+\endgroup
+\endgroup
+
+\mainmatter
+\subfile{sections/introduction}
+\subfile{sections/chapter2_equations}
+\subfile{sections/chapter3_winds}
+\subfile{sections/chapter4_atmospheres}
+\subfile{sections/chapter5_compare}
+\subfile{sections/chapter6_conclusion}
+
+\begin{appendices}
+% \appendixpage
+\noappendicestocpagenum
+\addappheadtotoc
+\subfile{sections/appendix_index}
+\subfile{sections/appendix_errorspaces}
+\subfile{sections/appendix_newtonian}
+\subfile{sections/appendix_derivations}
+\end{appendices}
+
+
+\cleardoublepage
 \bibliographystyle{plainnat}
-\bibliography{references,textbook_references}
+\addcontentsline{toc}{chapter}{References}
+\bibliography{papers,textbooks}
 
 \end{document}
 

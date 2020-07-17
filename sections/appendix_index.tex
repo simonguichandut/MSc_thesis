@@ -1,0 +1,100 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+
+\chapter{Index of constants, variables and parameters}\label{appendix_index}
+
+\begin{table}[h]
+    \centering
+    \caption{Physical constants}
+    \vspace*{0.3cm}
+    \begin{tabular}{clll}
+        \hline
+        Symbol & \multicolumn{1}{c}{Name} & \multicolumn{1}{c}{Value} & \multicolumn{1}{c}{CGS units}\\\hline
+        $G$ & Gravitational constant & $6.6726\times 10^{-8}$ & cm$^{3}$ g$^{-1}$ s$^{-2}$ \\
+        
+        $c$ & Speed of light in a vacuum & $2.9979\times 10^{10}$ & cm s$^{-1}$\\
+        
+        $k$ & Boltzmann constant & $1.3807\times10^{-16}$ & erg K$^{-1}$\\
+        
+        $m_p$ & Proton mass & $1.6726\times10^{-24}$ & g\\
+        
+        $\sigma$ & Stefan-Boltzmann constant & $5.6705\times10^{-5}$ & erg cm$^{-2}$ K$^{-4}$ s$^{-1}$   \\
+         
+        $a$ & Radiation constant & $7.5646\times 10^{-15}$ & erg cm$^{-3}$ K$^{-4}$\\
+        
+        $M_\odot$ & Solar mass & $1.99\times 10^{33}$ & g\\
+        
+          & & & \\
+         &  &  ($\downarrow$ values for He) & \\
+        $\kappa_0$ & Thomson scattering opacity & $0.2$ & cm$^2$ g$^{-1}$\\
+        $\mu_\text{I},\mu_\text{e},\mu$ & \makecell[l]{Ion, electron, gas\\~mean molecular weights} & $4,2,4/3$ & -\\
+    \end{tabular}
+\end{table}
+
+\begin{table}[htb!]
+    \centering
+    \caption{Variables}
+    % \vspace*{0.05cm}
+    \begin{tabular}{cll}
+        \hline
+        Variable & \multicolumn{1}{c}{Description} & \multicolumn{1}{c}{CGS units}  \\\hline
+        $r$ & Radial distance from stellar center & cm\\
+        $T(r)$ & Local temperature & K\\
+        $\rho(r)$ & Rest-mass density & g cm$^{-3}$\\
+        $u(r)$ & Fluid velocity in radial direction & cm s$^{-1}$\\
+        $F(r)$ & Local flux & erg s$^{-1}$ cm$^{-2}$\\
+        $L(r)$ & Local luminosity & erg s$^{-1}$\\
+        $\kappa(T)$ & Corrected electron scattering opacity & cm$^2$ g$^{-1}$\\
+        $c_s(r,T)$ & Sound speed & cm s$^{-1}$\\
+        $U_R(r,T)$ & Radiation energy density & erg cm$^{-3}$\\
+        $P_g(\rho,T)$ & Gas pressure & erg cm$^{-3}$\\
+        $U_g(\rho,T)$ & Gas internal energy & erg cm$^{-3}$\\
+    \end{tabular}
+\end{table}
+
+\begin{table}[htb!]
+    \centering
+    \caption{Parameters}
+    % \vspace*{0.05cm}
+    \begin{tabular}{clcl}
+        \hline
+        Parameter & \multicolumn{1}{c}{Name} & Equation & \multicolumn{1}{c}{CGS units}\\\hline
+        $\zeta$ & Curvature parameter & \eqref{eq:zeta} & -\\
+        $\gamma$ & Lorentz factor & \eqref{eq:gamma} & -\\
+        $\Psi$ & Energy parameter & \eqref{eq:Psi} & -\\
+        $\Ledd$ & Eddington luminosity & \eqref{eq:LEdd} & erg s$^{-1}$\\
+        $\Lcr$ & Local critical luminosity & \eqref{eq:Lcrit} & erg s$^{-1}$\\
+        $L^\infty$ & Luminosity seen at infinity & \eqref{eq:Linf} & erg s$^{-1}$\\
+        $g$ & Local gravitational acceleration & \eqref{eq:g} & cm s$^{-2}$\\
+        $\omega_g$ & Rest-mass energy plus enthalpy & \eqref{eq:omegag} & erg cm$^{-3}$\\
+        $\Mdot$ & Mass-loss rate & \eqref{eq:Mdot} & g s$^{-1}$\\
+        $\Edot$ & Energy-loss rate & \eqref{eq:Edot} & erg s$^{-1}$\\
+        $r_c$ & Critical point radius & \eqref{eq:regularity_constraint} & cm\\
+        $r\ph$ & Photospheric radius & \eqref{eq:wind_outerBC}$^*$ & cm\\
+        $r_b$ & Wind/envelope base radius & \eqref{eq:wind_innerBC} & cm\\
+        $\Phi$ & Velocity parameter & \eqref{eq:phi} & -\\
+        $\tau$ & Optical depth & \eqref{eq:trueopticaldepth} & -\\
+        $\tau^*$ & Optical depth parameter & \eqref{eq:taustar} & -\\
+        $y$ & Column depth & \eqref{eq:columndepth} & g cm$^{-2}$\\
+        $\nabla_\text{rad}$ & Radiative gradient & \eqref{eq:delrade} & -\\
+        $\nabla_\text{ad}$ & Adiabatic gradient & \eqref{eq:del_ad} & -\\
+        $T_\text{rad}$ & Radiation temperature & \eqref{eq:Trad} & K\\
+        \vspace*{3mm}
+        \makecell[c]{$\beta_\text{I},\beta_\text{e}$\\$\alpha_1,\alpha_2,f$} & Pressure parameters & \eqref{eq:pressure_params} & -\\
+        \vspace*{3mm}
+        \makecell[c]{$T^*$\\$A_\text{e},A$\\$B_\text{e},B$\\$C_\text{e},C$\\} & \makecell[l]{\citet{Paczynski1986b}\\~structure equations parameters} & \makecell[c]{\eqref{eq:AeBeCe_constants}\\\eqref{eq:ABC_constants}} & \makecell[l]{-\\-\\cm$^2$ s$^{-2}$\\cm$^2$ s$^{-2}$}\\
+    \end{tabular}
+\end{table}
+
+% \vfill
+% \noindent* Refers to definition for winds. In envelopes, $r\ph$ is a free parameter.
+
+\biblio
+
+% $g_\text{eff}(r,L,T)$ & Effective local gravitational acceleration & \eqref{eq:geff} & cm s$^{-2}$\\
+\end{document}
