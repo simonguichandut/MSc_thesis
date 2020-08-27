@@ -38,11 +38,11 @@ The non-zero Christoffel symbols of the Schwarzschild metric are:
 \end{center}
 
 The usual symbols "," and ";" are used for regular and covariant derivatives respectively.  The covariant derivative of an arbitrary tensor is given by 
-\begin{align*}
-T^{\mu_1...\mu_k}{}_{\nu_1...\nu_l\; ;\alpha}&=\partial_\alpha T^{\mu_1...\mu_k}{}_{\nu_1...\nu_l}\\
-&+\Gamma^{\mu_1}_{\alpha \sigma}T^{\sigma...\mu_k}{}_{\nu_1...\nu_l}+...+\Gamma^{\mu_k}_{\alpha \sigma}T^{\mu_1...\sigma}{}_{\nu_1...\nu_l}\\
-&-\Gamma^{\sigma}_{\alpha \nu_1}T^{\mu_1...\mu_k}{}_{\sigma...\nu_l}-...-\Gamma^{\sigma}_{\alpha \nu_k}T^{\mu_1...\mu_k}{}_{\nu_1...\sigma}\,,
-\end{align*}
+\begin{align}
+T^{\mu_1...\mu_k}{}_{\nu_1...\nu_l\; ;\alpha}&=\partial_\alpha T^{\mu_1...\mu_k}{}_{\nu_1...\nu_l}\nonumber\\
+&+\Gamma^{\mu_1}_{\alpha \sigma}T^{\sigma...\mu_k}{}_{\nu_1...\nu_l}+...+\Gamma^{\mu_k}_{\alpha \sigma}T^{\mu_1...\sigma}{}_{\nu_1...\nu_l}\nonumber\\
+&-\Gamma^{\sigma}_{\alpha \nu_1}T^{\mu_1...\mu_k}{}_{\sigma...\nu_l}-...-\Gamma^{\sigma}_{\alpha \nu_k}T^{\mu_1...\mu_k}{}_{\nu_1...\sigma}\,,\label{eq::tensor_divergence}
+\end{align}
 where $\partial_\alpha\equiv\partial/\partial x^\alpha$.
 
 There are two fundamental principles in this tensor formalism that need to be respected. First, the continuity equation represents the conservation of particle proper number density (per unit volume), and is given by $(nU^\mu)_{;\mu}=0$.   Second, the divergence of the total stress tensor of the system $T^{\mu\nu}_\text{tot}$ has to be zero ($T^{\mu\nu}_\text{tot}{}_{;\nu}=0$) so that there can be a solution to the Einstein field equations.  
@@ -58,7 +58,7 @@ For the \textbf{fixed frame}, we construct an orthonormal basis $\bm{e}_{\hat{\m
     \frac{\partial}{\partial \hat{\theta}}=\frac{1}{r}\frac{\partial}{\partial \theta} \quad,\quad
     \frac{\partial}{\partial \hat{\phi}}=\frac{1}{r\sin\theta}\frac{\partial}{\partial\phi}\,.
 \end{equation}
-It is easy to verify that the base is indeed orthornormal, i.e. $e_{\hat{\mu}}\cdot e^{\hat{\nu}}=\delta_{\hat{\mu}}^{\hat{\nu}}\;$\footnote{Use $ e^{\hat{j}}=\eta^{\hat{j}\hat{k}}e_{\hat{k}}$ and $\partial_i\cdot\partial_j=g_{jk}\partial_i\cdot\partial^k=g_{jk}\delta^k_i$}, the kronecker delta.  An observer in this frame sees matter moving with proper velocity $\bm{v}$, which in one spatial dimension is given by
+It is easy to verify that the base is indeed orthornormal, i.e., $e_{\hat{\mu}}\cdot e^{\hat{\nu}}=\delta_{\hat{\mu}}^{\hat{\nu}}\;$\footnote{Use $ e^{\hat{j}}=\eta^{\hat{j}\hat{k}}e_{\hat{k}}$ and $\partial_i\cdot\partial_j=g_{jk}\partial_i\cdot\partial^k=g_{jk}\delta^k_i$}, the kronecker delta.  An observer in this frame sees matter moving with proper velocity $\bm{v}$, which in one spatial dimension is given by
 \begin{equation}
     v^r=\frac{U^{\hat{r}}}{U^{\hat{t}}}=\frac{U_\alpha e_{\hat{r}}^\alpha}{\-U_\alpha e_{\hat{t}}^\alpha}=\frac{U_r\zeta}{\-U_t\zeta^{\-1}}=\frac{U^r\zeta^{\-1}}{\Psi\zeta^{\-1}}=U^r\Psi^{\-1} \,.
 \end{equation}
@@ -102,7 +102,7 @@ The two tensors are related to each other by the previously defined Lorentz boos
 \begin{equation}
       \bar{R}^{\hat{\alpha}\hat{\beta}}=\frac{\partial x^{\hat{\alpha}}}{\partial x^{\hat{\mu}}_\text{co}}\frac{\partial x^{\hat{\beta}}}{\partial x^{\hat{\nu}}_\text{co}}R^{\hat{\mu}\hat{\nu}}_\text{co}=\Lambda^{\hat{\alpha}}_{\hat{\mu}}\Lambda^{\hat{\beta}}_{\hat{\nu}}R^{\hat{\mu}\hat{\nu}}_\text{co}
 \end{equation}
-In the four-dimensional picture, the Lorentz matrix is completed by 2x2 identity matrix in the $(\theta,\phi)$ block, i.e. $\Lambda^{\hat{\theta}}_{\hat{\theta}}=\Lambda^{\hat{\phi}}_{\hat{\phi}}=1$, $\Lambda^{\hat{\theta}}_{\hat{\phi}}=\Lambda^{\hat{\phi}}_{\hat{\theta}}=0$.  Using this, we can write the components of energy, flux and pressure in the fixed frame as a function of the comoving quantities:
+In the four-dimensional picture, the Lorentz matrix is completed by 2x2 identity matrix in the $(\theta,\phi)$ block, i.e., $\Lambda^{\hat{\theta}}_{\hat{\theta}}=\Lambda^{\hat{\phi}}_{\hat{\phi}}=1$, $\Lambda^{\hat{\theta}}_{\hat{\phi}}=\Lambda^{\hat{\phi}}_{\hat{\theta}}=0$.  Using this, we can write the components of energy, flux and pressure in the fixed frame as a function of the comoving quantities:
 \begingroup
 \allowdisplaybreaks
 \begin{align}
@@ -134,7 +134,7 @@ and the transformation given by Eq.~\eqref{eq::co_to_coord}, we obtain
     G^t&=\frac{\gamma}{\zeta}\left(G^{\hat{t}}_\text{co}+\frac{u}{c}G^{\hat{r}}_\text{co}\right)\,,\\
     G^r&=\Psi\left(\frac{u}{c}G^{\hat{t}}_\text{co}+G^{\hat{r}}_\text{co}\right)\,.
 \end{align}
-We have made the assumption of a purely radial flux here, i.e. the angular components of $F^i_\text{co}$, and as a result those of $G^i_\text{co}$ and $G^i$, are all zero.
+We have made the assumption of a purely radial flux here, i.e., the angular components of $F^i_\text{co}$, and as a result those of $G^i_\text{co}$ and $G^i$, are all zero.
 
 \section*{Continuity equation}
 The general relativistic mass conservation equation comes from the covariant continuity equation.  Considering spherical symmetry ($U^\theta=U^\phi=0$),
@@ -295,7 +295,7 @@ in units of energy flux per unit time [erg cm$^{\-2}$ s$^{\-2}$].
 
 
 \section*{Non-relativistic limit}
-Let us now convince the reader that the hydrodynamics equations that we derived from first principles, i.e. $(nU^\mu)_{;\mu}=0$ and $T^{\mu\nu}_{\text{tot};\nu}=0$, converge to familiar textbook equations in the non-relativistic limit. In this limit, we take $\zeta=\gamma=\Psi=1$ and $P_g\ll \rho c^2$.  For familiarity, we restore the $\nabla$ operators for gradients and divergences and $\bm{u}$ and $\bm{F}$ as vectors.  For radiation, there is no frame transformation so that the fixed frame quantities are equal to their comoving frame counterpart ($\bar{E}=U_R$, $\bar{F}=F$, $\bar{P}=U_R /3$, $\Lambda_\text{co}-\Gamma_\text{co}=\Lambda-\Gamma$).  We can also freely replace $n$ with $\rho$ in all of the equations.\\
+Let us now convince the reader that the hydrodynamics equations that we derived from first principles, i.e., $(nU^\mu)_{;\mu}=0$ and $T^{\mu\nu}_{\text{tot};\nu}=0$, converge to familiar textbook equations in the non-relativistic limit. In this limit, we take $\zeta=\gamma=\Psi=1$ and $P_g\ll \rho c^2$.  For familiarity, we restore the $\nabla$ operators for gradients and divergences and $\bm{u}$ and $\bm{F}$ as vectors.  For radiation, there is no frame transformation so that the fixed frame quantities are equal to their comoving frame counterpart ($\bar{E}=U_R$, $\bar{F}=F$, $\bar{P}=U_R /3$, $\Lambda_\text{co}-\Gamma_\text{co}=\Lambda-\Gamma$).  We can also freely replace $n$ with $\rho$ in all of the equations.\\
 
 \noindent The conservation of mass equation trivially becomes
 \begin{equation}
