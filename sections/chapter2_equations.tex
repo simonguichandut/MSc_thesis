@@ -146,7 +146,7 @@ where $n$ is the number density of particles. Applying the derivatives according
 Then, we can obtain three more equations from the zero-divergence property of the stress tensor (Eq.~\ref{eq:stresstensordivergence}), which has been re-written using the radiation four-force density $G^\mu$ in the last section. From $T^{\mu\nu}_{;\nu}=G^\mu$, we can obtain the $r$-momentum and energy conservation equations using projection operators -- details are in Appendix \ref{appendix_derivations}.  These equations are: 
 \begin{align}
     &\frac{\Psi}{\zeta^2}\Partial{t}{u \Psi}+\frac{1}{2}\Partial{r}{u\Psi}^2+\frac{GM}{r^2} +\frac{u\gamma^2}{\omega_g}\frac{\partial P_g}{\partial t} +\frac{c^2\Psi^2}{\omega_g}\frac{\partial P_g}{\partial r} = \frac{\Psi c}{\omega_g}\rho\kappa F\label{eq:momcons}\,,\\
-    &\frac{n\Psi}{\zeta^2}\Partial{t}{\frac{\omega_g}{n}}+n u\Psi\Partial{r}{\frac{\omega_g}{n}}-\frac{\Psi}{\zeta^2}\frac{\partial P_g}{\partial t}-u\Psi\frac{\partial P_g}{\partial r}=\Lambda_\text{co}-\Gamma_\text{co}\,.\label{eq:enercons}
+    &\frac{n\Psi}{\zeta^2}\Partial{t}{\frac{\omega_g}{n}}+n u\Psi\Partial{r}{\frac{\omega_g}{n}}-\frac{\Psi}{\zeta^2}\frac{\partial P_g}{\partial t}-u\Psi\frac{\partial P_g}{\partial r}=\Gamma_\text{co}-\Lambda_\text{co}\,.\label{eq:enercons}
 \end{align}
 
 Finally, the radiation moment equations are to be found from 
@@ -203,7 +203,7 @@ We have arrived at a Bernoulli equation for the flow, where the energy in the st
     &\approx \rho\left(1-\frac{GM}{c^2r}+\frac{1}{2}\frac{u^2}{c^2}\right)\left(c^2+\frac{P_g+U_g}{\rho}\right)\nonumber\\
     &\approx \rho\left(c^2-\frac{GM}{r}+\frac{u^2}{2}+\frac{P_g+U_g}{\rho}\right)\,,\label{eq:bernoulli_approx}
 \end{align}
-where we ignored cross-products of small terms. Notice that the quantity in parentheses in Eq.~\eqref{eq:bernoulli} is the usual non-relativistic Bernoulli's constant for an ideal gas in a gravitational potential.
+where we ignored cross-products of small terms. Notice that the quantity in parentheses in Eq.~\eqref{eq:bernoulli_approx} is the usual non-relativistic Bernoulli's constant for an ideal gas in a gravitational potential.
 
 Now to obtain an integration constant, we integrate Eq.~\eqref{eq:bernoulli} and use the frame transformation for $\bar{F}$, giving
 \begin{equation}

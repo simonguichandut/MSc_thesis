@@ -231,7 +231,7 @@ Right-hand side:
 \end{align*}
 Multiplying both sides by $-1$ gives the energy equation (Eq.~\ref{eq:enercons}),
 \begin{equation}
-    \frac{n \Psi}{\zeta^2}\Partial{t}{\frac{\omega_g}{n}}+n u\Psi\Partial{r}{\frac{\omega_g}{n}}-\frac{\Psi}{\zeta^2}\frac{\partial P_g}{\partial t}-u\Psi\frac{\partial P_g}{\partial r}=\Lambda_\text{co}-\Gamma_\text{co}\,,
+    \frac{n \Psi}{\zeta^2}\Partial{t}{\frac{\omega_g}{n}}+n u\Psi\Partial{r}{\frac{\omega_g}{n}}-\frac{\Psi}{\zeta^2}\frac{\partial P_g}{\partial t}-u\Psi\frac{\partial P_g}{\partial r}=\Gamma_\text{co}-\Lambda_\text{co}\,,
 \end{equation}
 in units of energy density per unit time [erg cm$^{\-3}$ s$^{\-1}$].
 
@@ -245,11 +245,11 @@ and
 \end{equation*}
 so that we end up with
 \begin{equation}
-    \frac{\Psi}{\zeta^2}\frac{\partial U_g}{\partial t}+\frac{U_g+P_g}{\zeta^2}\frac{\partial \Psi}{\partial t}+u\Psi\frac{\partial U_g}{\partial r}+\frac{U_g+P_g}{r^2}\frac{\partial}{\partial r}(r^2u\Psi)=\Lambda_\text{co}-\Gamma_\text{co}
+    \frac{\Psi}{\zeta^2}\frac{\partial U_g}{\partial t}+\frac{U_g+P_g}{\zeta^2}\frac{\partial \Psi}{\partial t}+u\Psi\frac{\partial U_g}{\partial r}+\frac{U_g+P_g}{r^2}\frac{\partial}{\partial r}(r^2u\Psi)=\Gamma_\text{co}-\Lambda_\text{co}
 \end{equation}
 We can also write this in terms of the specific internal energy $\varepsilon_g\equiv U_g/\rho$.  This gives
 \begin{equation}\label{eq:specific_internal_energy}
-    \frac{\Psi}{\zeta^2}\frac{\partial \varepsilon_g}{\partial t}+u\Psi\frac{\partial \varepsilon_g}{\partial r}+\frac{P_g}{\rho\zeta^2}\frac{\partial \Psi}{\partial t}+\frac{P_g}{\rho r^2}\frac{\partial}{\partial r}(r^2u\Psi)=\frac{\Lambda_\text{co}-\Gamma_\text{co}}{\rho}\,.
+    \frac{\Psi}{\zeta^2}\frac{\partial \varepsilon_g}{\partial t}+u\Psi\frac{\partial \varepsilon_g}{\partial r}+\frac{P_g}{\rho\zeta^2}\frac{\partial \Psi}{\partial t}+\frac{P_g}{\rho r^2}\frac{\partial}{\partial r}(r^2u\Psi)=\frac{\Gamma_\text{co}-\Lambda_\text{co}}{\rho}\,.
 \end{equation}
 It could be argued that the $\partial \Psi/\partial t$ term can be ignored.  Then, with only one time derivative, this equation would be very suitable for a hydrodynamics calculation.
 
